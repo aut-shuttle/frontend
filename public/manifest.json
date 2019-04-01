@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Shuttle",
+  "name": "AUT Shuttle App",
   "icons": [
     {
       "src": "favicon.ico",
