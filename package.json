@@ -2,6 +2,17 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "Serves the client-side web application.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aut-shuttle/frontend.git"
+  },
+  "author": "Thea Miguel, Olaf Wrieden, Chenhui Lyu, Michael Jeffcoat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aut-shuttle/frontend/issues"
+  },
+  "homepage": "https://github.com/aut-shuttle/frontend#readme",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -11,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write --config .prettierrc.json \"**/*.js\""
   },
   "eslintConfig": {
     "extends": "react-app"
