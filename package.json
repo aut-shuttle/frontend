@@ -14,9 +14,18 @@
   },
   "homepage": "https://github.com/aut-shuttle/frontend#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "d3-scale": "^3.0.0",
+    "formik": "^1.5.2",
+    "google-maps": "^3.3.0",
     "react": "^16.8.6",
+    "react-c3js": "^0.1.20",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-google-maps": "^9.4.5",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "react-simple-maps": "^0.12.1",
+    "tabler-react": "^1.29.0"
   },
   "scripts": {
     "start": "react-scripts start",
