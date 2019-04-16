@@ -1,0 +1,49 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Serves the client-side web application.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aut-shuttle/frontend.git"
+  },
+  "author": "Thea Miguel, Olaf Wrieden, Chenhui Lyu, Michael Jeffcoat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aut-shuttle/frontend/issues"
+  },
+  "homepage": "https://github.com/aut-shuttle/frontend#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "d3-scale": "^3.0.0",
+    "formik": "^1.5.2",
+    "google-maps": "^3.3.0",
+    "react": "^16.8.6",
+    "react-c3js": "^0.1.20",
+    "react-dom": "^16.8.6",
+    "react-google-maps": "^9.4.5",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "react-simple-maps": "^0.12.1",
+    "tabler-react": "^1.29.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "format": "prettier --write --config .prettierrc.json \"**/*.js\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "prettier": "^1.16.4"
+  }
+}
