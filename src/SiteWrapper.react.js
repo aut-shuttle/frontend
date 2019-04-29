@@ -137,7 +137,7 @@ class SiteWrapper extends React.Component<Props, State> {
         headerProps={{
           href: "/",
           alt: "AUT University",
-          imageURL: "images/autlogo.png", // Needs to be updated
+          imageURL: "images/shuttle.png",
           notificationsTray: {
             notificationsObjects,
             markAllAsRead: () =>
