@@ -4,7 +4,7 @@ import "tabler-react/dist/Tabler.css";
 
 
 
-import LoginPage from "./components/LoginPg.react";
+import LoginPage from "./components/LoginPage.react";
 import RegisterPage from "./components/RegisterPage.react";
 import HomePage from "./components/HomePage.react";
 
