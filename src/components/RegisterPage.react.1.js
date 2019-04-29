@@ -1,9 +1,9 @@
 // @flow
-import React, { Component } from 'react'
+import * as React from 'react'
 import { Formik } from 'formik'
-import { LoginPage as TablerLoginPage } from 'tabler-react'
-import axios from 'axios'
+
 import { RegisterPage as TablerRegisterPage } from 'tabler-react'
+
 import {
 	Page,
 	Avatar,
@@ -25,18 +25,13 @@ import {
 	Stamp
 } from 'tabler-react'
 
-export default class LoginPage extends Component {
-	constructor(props) {
-		super(props)
+import SiteWrapper from './../SiteWrapper.react'
 
-	}
-	handleSubmit = (values, { props = this.props, setSubmitting }) => {
-		console.log(values)
-		setSubmitting(false)
-		return
-	}
-	render() {
+type Props = {||}
+
+function RegisterPage(props: Props): React.Node {
 	return (
+		<SiteWrapper>
 			<Page.Content>
 				<Grid.Row cards={true}>
 					<Formik
@@ -67,7 +62,12 @@ export default class LoginPage extends Component {
 
 							return errors
 						}}
-							onSubmit={this.handleSubmit}
+						onSubmit={(
+							values,
+							{ setSubmitting, setErrors /* setValues and other goodies */ }
+						) => {
+							alert('Registered')
+						}}
 						render={({
 							values,
 							errors,
@@ -89,6 +89,8 @@ export default class LoginPage extends Component {
 					/>
 				</Grid.Row>
 			</Page.Content>
+		</SiteWrapper>
 	)
 }
-}
+
+export default RegisterPage

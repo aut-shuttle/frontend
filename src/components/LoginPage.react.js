@@ -19,13 +19,16 @@ export default class LoginPage extends Component {
 			password: values.password
 		}
 		axios.post('http://localhost:3000/login', loginUser)
-		.then(res => console.log(res.data));
+		.then((result) => {
+        localStorage.setItem('token', result.data.token);
+        this.setState({ message: '' });
+        this.props.history.push('/')
+      });
 		setSubmitting(false)
 		return
 	}
 	render() {
 		return (
-			<SiteWrapper>
 				<Page.Content>
 					<Grid.Row cards={true}>
 						<Formik
@@ -55,7 +58,6 @@ export default class LoginPage extends Component {
 						/>
 					</Grid.Row>
 				</Page.Content>
-			</SiteWrapper>
 		)
 	}
 }
