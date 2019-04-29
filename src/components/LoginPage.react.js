@@ -5,7 +5,21 @@ import axios from 'axios'
 
 import {Page,Grid} from 'tabler-react'
 
+<<<<<<< HEAD
 import SiteWrapper from './../SiteWrapper.react'
+=======
+
+
+function LoginPage(props: Props): React.Node {
+  return (
+    <Formik
+      initialValues={{
+        email: "",
+        password: "",
+      }}
+      validate={values => {
+        // same as above, but feel free to move this into a class method now.
+>>>>>>> olafwrieden
 
 export default class LoginPage extends Component {
 	constructor(props) {
