@@ -13,12 +13,12 @@ export default class LoginPage extends Component {
 		}
 	}
 
-	handleChange = async (values, { resetForm, setErrors, setSubmitting }) => {
+	handleChange = async => {
 		const state = this.state
 		this.setState(state)
 	}
 
-	handleSubmit = async (values, { resetForm, setErrors, setSubmitting }) => {
+	handleSubmit = async (values, { setSubmitting }) => {
 		console.log(values)
 		setSubmitting(true)
 		const loginUser = {
@@ -49,6 +49,11 @@ export default class LoginPage extends Component {
 		return (
 			<Page.Content>
 				<Grid.Col md={6}>
+					<Grid.Row>
+						<Alert type="primary">
+							<Alert.Link>Welcome to the AUT Shuttle App!</Alert.Link>
+						</Alert>
+					</Grid.Row>
 					<Grid.Row cards={true}>
 						<Formik
 							initialValues={{
