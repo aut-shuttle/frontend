@@ -64,7 +64,7 @@ export default class ProfilePage extends React.Component {
 							</Card.Body>
 							<Card.Footer className="text-right">
 								<Button type="submit" color="primary">
-									Change Password
+									Upadate profile
 								</Button>
 							</Card.Footer>
 						</Form>
