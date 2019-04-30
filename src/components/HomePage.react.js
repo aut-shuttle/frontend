@@ -23,17 +23,17 @@ import SiteWrapper from './../SiteWrapper.react'
 export default class LoginPage extends Component {
 	constructor(props) {
 		super(props)
-		this.user = {}
+
 		this.state = {
 			user: ''
 		}
+		API.get('/profile/').then(res => {
+			this.setState({ user: res.data })
+		})
 	}
 
 	componentDidMount() {
 		if (localStorage.getItem('token')) {
-			API.get('/profile/').then(res => {
-				this.setState({ user: res.data })
-			})
 		} else {
 			this.props.history.push('/login')
 		}
