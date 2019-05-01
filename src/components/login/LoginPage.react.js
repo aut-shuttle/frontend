@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import { Formik, Form } from 'formik'
-import { LoginPage as TablerLoginPage } from 'tabler-react'
-import axios from 'axios'
-import API from '../utils/API'
+import API from '../../utils/API'
 import {
 	Page,
 	Grid,
 	Alert,
 	Form as TablerForm,
-	Button,
-	Card
+	Button
 } from 'tabler-react'
 
 export default class LoginPage extends Component {
@@ -51,7 +48,7 @@ export default class LoginPage extends Component {
 				if (error.response.status === 409) {
 					setSubmitting(false)
 					this.setState({
-						message: 'Login failed. Username or password not match'
+						message: 'Username or password are incorrect'
 					})
 				}
 				if (error.response.status === 404) {
