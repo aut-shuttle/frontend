@@ -3,7 +3,14 @@ import { Formik, Form } from 'formik'
 import { LoginPage as TablerLoginPage } from 'tabler-react'
 import axios from 'axios'
 import API from '../utils/API'
-import { Page, Grid, Alert } from 'tabler-react'
+import {
+	Page,
+	Grid,
+	Alert,
+	Form as TablerForm,
+	Button,
+	Card
+} from 'tabler-react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
@@ -51,7 +58,7 @@ export default class LoginPage extends Component {
 		const { message } = this.state
 		return (
 			<Page.Content>
-				<Grid.Col md={6}>
+				<Grid.Col md={10}>
 					<Grid.Row>
 						<Alert type="primary">
 							<Alert.Link>Welcome to the AUT Shuttle App!</Alert.Link>
@@ -59,9 +66,7 @@ export default class LoginPage extends Component {
 					</Grid.Row>
 					<Grid.Row cards={true}>
 						<Formik
-							// Sets up our default values
 							initialValues={{ email: '', password: '' }}
-							// Validates our data
 							validate={values => {
 								const errors = {}
 
@@ -78,61 +83,69 @@ export default class LoginPage extends Component {
 							}}
 							// Handles our submission
 							onSubmit={this.handleSubmit}
+							//validate={this.handleValidate}
 						>
 							{props => (
 								<Form>
-									<label htmlFor="email">Email</label>
-									<div>
-										<input
-											name="email"
-											type="email"
-											placeholder="Enter Email"
-											value={props.values.email}
-											onChange={props.handleChange}
-											onBlur={props.handleBlur}
-											style={{
-												borderColor:
-													props.errors.email && props.touched.email && 'red'
-											}}
-										/>
-										{props.errors.email && props.touched.email && (
-											<div style={{ color: 'red' }}>{props.errors.email}</div>
-										)}
-									</div>
-									<label htmlFor="password">Password</label>
-									<div>
-										<input
-											name="password"
-											type="password"
-											placeholder="Enter Password"
-											value={props.values.password}
-											onChange={props.handleChange}
-											onBlur={props.handleBlur}
-											style={{
-												borderColor:
-													props.errors.password &&
-													props.touched.password &&
-													'red'
-											}}
-										/>
-										{props.errors.password && props.touched.password && (
-											<div style={{ color: 'red' }}>
-												{props.errors.password}
-											</div>
-										)}
-									</div>
-									<input
-										type="submit"
-										value="Submit"
-										disabled={props.isSubmitting}
-									/>
-									&nbsp;
-									<input
-										type="reset"
-										value="Reset"
-										onClick={props.handleReset}
-										disabled={!props.dirty || props.isSubmitting}
-									/>
+									<Card>
+										<label htmlFor="email">Email</label>
+										<div>
+											<TablerForm.Input
+												name="email"
+												type="email"
+												placeholder="Enter Email"
+												value={props.values.email}
+												onChange={props.handleChange}
+												onBlur={props.handleBlur}
+												style={{
+													borderColor:
+														props.errors.email && props.touched.email && 'red'
+												}}
+											/>
+											{props.errors.email && props.touched.email && (
+												<div style={{ color: 'red' }}>{props.errors.email}</div>
+											)}
+										</div>
+										<label htmlFor="password">Password</label>
+										<div>
+											<TablerForm.Input
+												name="password"
+												type="password"
+												placeholder="Enter Password"
+												value={props.values.password}
+												onChange={props.handleChange}
+												onBlur={props.handleBlur}
+												style={{
+													borderColor:
+														props.errors.password &&
+														props.touched.password &&
+														'red'
+												}}
+											/>
+
+											{props.errors.password && props.touched.password && (
+												<div style={{ color: 'red' }}>
+													{props.errors.password}
+												</div>
+											)}
+										</div>
+										<Button
+											color="primary"
+											type="submit"
+											disabled={props.isSubmitting}
+										>
+											Submit
+										</Button>
+										&nbsp;
+										<Button
+											color="primary"
+											type="reset"
+											onClick={props.handleReset}
+											disabled={!props.dirty || props.isSubmitting}
+										>
+											Reset
+										</Button>
+									</Card>
 								</Form>
 							)}
 						</Formik>
