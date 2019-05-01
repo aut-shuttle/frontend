@@ -4,9 +4,9 @@ import "tabler-react/dist/Tabler.css";
 
 
 
-import LoginPage from "./components/LoginPage.react";
-import RegisterPage from "./components/RegisterPage.react";
-import HomePage from "./components/HomePage.react";
+import LoginPage from "./components/login/LoginPage.react";
+import RegisterPage from "./components/register/RegisterPage.react";
+import HomePage from "./components/home/HomePage.react";
 
 
 
