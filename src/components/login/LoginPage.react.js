@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import { Formik, Form } from 'formik'
 import API from '../../utils/API'
-import {
-	Page,
-	Grid,
-	Alert,
-	Form as TablerForm,
-	Button
-} from 'tabler-react'
+import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
@@ -32,7 +26,6 @@ export default class LoginPage extends Component {
 	}
 
 	handleSubmit = async (values, { setSubmitting }) => {
-		console.log(values)
 		setSubmitting(true)
 		const loginUser = {
 			email_address: values.email,
@@ -41,6 +34,7 @@ export default class LoginPage extends Component {
 		API.post('/login', loginUser)
 			.then(result => {
 				localStorage.setItem('token', result.data.token)
+				localStorage.setItem('name', result.data.user.first_name +" " + result.data.user.last_name)
 				this.props.history.push('/')
 				setSubmitting(false)
 			})
@@ -71,11 +65,11 @@ export default class LoginPage extends Component {
 				>
 					{props => (
 						<Form>
-							<Grid.Col md={7}>
+							<Grid.Col md={5}>
 								<TablerForm.FieldSet>
-									<Alert type="primary">
-										<Alert.Link>Welcome to the AUT Shuttle App!</Alert.Link>
-									</Alert>
+									<center>
+										<h1>Welcome to the AUT Shuttle App!</h1>
+									</center>
 									<TablerForm.Input
 										name="email"
 										type="email"
@@ -108,15 +102,20 @@ export default class LoginPage extends Component {
 									{props.errors.password && props.touched.password && (
 										<div style={{ color: 'red' }}>{props.errors.password}</div>
 									)}
-									&nbsp;
 									<Button
+										block
 										color="primary"
 										type="submit"
 										disabled={props.isSubmitting}
 									>
-										Submit
+										Login
 									</Button>
+									&nbsp;
+									<center>
+										<p>New here?</p>{' '}
+									</center>
 									<Button
+										block
 										color="warning"
 										type="Register"
 										onClick={() => {
