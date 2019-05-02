@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Formik, Form } from 'formik'
-import api from './api'
+import API from '../utils/API'
 import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
 
 export default class ProfilePage extends Component {
@@ -14,9 +14,10 @@ export default class ProfilePage extends Component {
 		const updateprofile = {
 			first_name: values.fname
 		}
-		api.patch('profile', updateprofile).then(result => {
-			console.log(result)
-			console.log(result.data)
+		API.patch('profile', updateprofile).then(result => {
+			localStorage.setItem('token', result.data.token)
+                localStorage.setItem('name', result.data.user.first_name +" " + result.data.user.last_name)
+				this.props.history.push('/')
 		})
 
 		return
