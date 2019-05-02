@@ -24,18 +24,15 @@ export default class LoginPage extends Component {
 	}
 
 	render() {
-		const { user } = this.state
 		return (
 			<SiteWrapper>
-				<Page.Content
-					title={'Welcome, ' + localStorage.getItem('name')}
-				>
+				<Page.Content title={'Welcome, ' + this.state.user.first_name}>
 					<Grid.Row cards deck>
 						<Grid.Col md={3}>
 							<Card
 								statusColor="blue"
 								title="Current Balance"
-								body={<center>${user.balance}</center>}
+								body={<center>${this.state.user.balance}</center>}
 							/>
 						</Grid.Col>
 						<Grid.Col md={3}>

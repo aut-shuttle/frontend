@@ -34,7 +34,6 @@ export default class LoginPage extends Component {
 		API.post('/login', loginUser)
 			.then(result => {
 				localStorage.setItem('token', result.data.token)
-				localStorage.setItem('name', result.data.user.first_name +" " + result.data.user.last_name)
 				this.props.history.push('/')
 				setSubmitting(false)
 			})
