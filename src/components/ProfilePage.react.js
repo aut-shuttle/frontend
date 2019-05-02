@@ -1,22 +1,9 @@
-import * as React from 'react'
-import SiteWrapper from './../SiteWrapper.react'
-import axios from 'axios'
+import React, { Component } from 'react'
+import { Formik, Form } from 'formik'
 import api from './api'
-import {
-	Container,
-	Grid,
-	Card,
-	Button,
-	Form,
-	Avatar,
-	Profile,
-	List,
-	Media,
-	Text,
-	Comment
-} from 'tabler-react'
+import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
 
-export default class ProfilePage extends React.Component {
+export default class ProfilePage extends Component {
 	constructor(props) {
 		super(props)
 	}
@@ -24,47 +11,50 @@ export default class ProfilePage extends React.Component {
 	handleSubmit = async (values, { setSubmitting }) => {
 		console.log(values)
 		setSubmitting(true)
-
 		const updateprofile = {
 			first_name: values.fname
 		}
-		api.patch('/profile', updateprofile)
+		api.patch('profile', updateprofile).then(result => {
+			console.log(result)
+			console.log(result.data)
+		})
+
+		return
 	}
 	render() {
 		return (
-			<SiteWrapper>
-				<div className="profile">
-					<Container>
-						<Grid.Row>
-							<Grid.Col lg={13}>
-								<Form className="card" onSubmit={this.handleSubmit}>
-									<Card.Body>
-										<Card.Title>Profile</Card.Title>
-										<Grid.Row>
-											<Grid.Col sm={6} md={6}>
-												<Form.Group>
-													<Form.Label>First Name</Form.Label>
-													<Form.Input
-														type="text"
-														name="fname"
-														required
-														onChange={this.handleChange}
-													/>
-												</Form.Group>
-											</Grid.Col>
-										</Grid.Row>
-									</Card.Body>
-									<Card.Footer className="text-right">
-										<Button type="submit" color="primary">
-											Upadate profile
-										</Button>
-									</Card.Footer>
-								</Form>
+			<Page.Content>
+				<Formik onSubmit={this.handleSubmit}>
+					{props => (
+						<Form>
+							<Grid.Col md={7}>
+								<TablerForm.FieldSet>
+									<Alert type="primary">
+										<Alert.Link>Update Profile</Alert.Link>
+									</Alert>
+									<TablerForm.Input
+										name="fname"
+										type="text"
+										label="First name"
+										placeholder="FIrst name"
+										value={props.values.fname}
+									/>
+
+									<Button
+										color="primary"
+										type="submit"
+										disabled={props.Submitting}
+									>
+										Submit
+									</Button>
+
+									<Grid.Row />
+								</TablerForm.FieldSet>
 							</Grid.Col>
-						</Grid.Row>
-					</Container>
-				</div>
-			</SiteWrapper>
+						</Form>
+					)}
+				</Formik>
+			</Page.Content>
 		)
 	}
 }
