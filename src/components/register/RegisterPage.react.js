@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { Formik } from 'formik'
 import { LoginPage as TablerLoginPage } from 'tabler-react'
 import axios from 'axios'
-import API from '../utils/API'
+import API from '../../utils/API'
 //import { RegisterPage as TablerRegisterPage } from 'tabler-react'
 import RegisterPageTabler from './RegisterPageTabler.react'
 // 

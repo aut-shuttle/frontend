@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import API from '../utils/API'
+import API from '../../utils/API'
 
 import {
 	Page,
@@ -16,9 +16,9 @@ import {
 	Stamp
 } from 'tabler-react'
 
-import GoogleMap from '../GoogleMap'
+import GoogleMap from '../../GoogleMap'
 
-import SiteWrapper from './../SiteWrapper.react'
+import SiteWrapper from './../../SiteWrapper.react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
