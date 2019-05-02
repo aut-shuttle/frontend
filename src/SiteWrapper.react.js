@@ -3,11 +3,7 @@ import { NavLink, withRouter } from "react-router-dom";
 
 import {
   Site,
-  Nav,
-  Grid,
-  List,
-  Button,
-  RouterContextProvider,
+  RouterContextProvider
 } from "tabler-react";
 
 import type { NotificationProps } from "tabler-react";
