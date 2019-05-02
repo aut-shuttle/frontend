@@ -138,57 +138,6 @@ class SiteWrapper extends React.Component<Props, State> {
 		]
 	}
 
-<<<<<<< HEAD
-	render(): React.Node {
-		const notificationsObjects = this.state.notificationsObjects || []
-		const unreadCount = this.state.notificationsObjects.reduce(
-			(a, v) => a || v.unread,
-			false
-		)
-		return (
-			<Site.Wrapper
-				headerProps={{
-					href: '/',
-					alt: 'AUT University',
-					imageURL: 'images/autlogo.png', // Needs to be updated
-					notificationsTray: {
-						notificationsObjects,
-						markAllAsRead: () =>
-							this.setState(
-								() => ({
-									notificationsObjects: this.state.notificationsObjects.map(
-										v => ({ ...v, unread: false })
-									)
-								}),
-								() =>
-									setTimeout(
-										() =>
-											this.setState({
-												notificationsObjects: this.state.notificationsObjects.map(
-													v => ({ ...v, unread: true })
-												)
-											}),
-										5000
-									)
-							),
-						unread: unreadCount
-					},
-					accountDropdown: accountDropdownProps
-				}}
-				navProps={{ itemsObjects: navBarItems }}
-				routerContextComponentType={withRouter(RouterContextProvider)}
-				footerProps={{
-					links: [
-						<a href="#">AUT Website</a>,
-						<a href="#">Terms and Conditions</a>
-					]
-				}}
-			>
-				{this.props.children}
-			</Site.Wrapper>
-		)
-	}
-=======
   render(): React.Node {
     const notificationsObjects = this.state.notificationsObjects || [];
     const unreadCount = this.state.notificationsObjects.reduce(
@@ -239,7 +188,6 @@ class SiteWrapper extends React.Component<Props, State> {
       </Site.Wrapper>
     );
   }
->>>>>>> master
 }
 
 export default SiteWrapper
