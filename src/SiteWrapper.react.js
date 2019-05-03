@@ -111,7 +111,8 @@ const accountDropdownProps = {
 		{ icon: 'help-circle', value: 'Need help?' },
 		{ icon: 'log-out',
 			value: 'Sign out' ,
-			to:'/logout',
+			to: '/logout',
+			
 			LinkComponent: withRouter(NavLink)
 		   } 
 	]

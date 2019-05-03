@@ -9,8 +9,8 @@ import RegisterPage from "./components/register/RegisterPage.react";
 import HomePage from "./components/home/HomePage.react";
 import ProfilePage from './components/ProfilePage.react';
 import ChangePasswordPage from './components/ChangePasswordPage.react';
+import LogoutPage from './components/LogoutPage.react';
 
-import LogoutPage from './components/Logoutpage.react';
 type Props = {||};
 
 function App(props: Props): React.Node {
@@ -23,8 +23,8 @@ function App(props: Props): React.Node {
           <Route exact path="/login" component={LoginPage} />
 		  <Route exact path="/profile" component={ProfilePage} />
           <Route exact path="/changePassword" component={ChangePasswordPage} />
-		  
 		  <Route exact path="/logout" component={LogoutPage} />
+		  
         </Switch>
       </Router>
     </React.StrictMode>
