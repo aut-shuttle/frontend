@@ -65,7 +65,9 @@ const navBarItems: Array<navItem> = [
 		value: 'Profile',
 		icon: 'user',
 		subItems: [
+			
 			{
+				
 				value: 'Edit Profile',
 				to: '/profile',
 				LinkComponent: withRouter(NavLink)
@@ -74,7 +76,13 @@ const navBarItems: Array<navItem> = [
 				value: 'Change Password',
 				to: '/changePassword',
 				LinkComponent: withRouter(NavLink)
-			}
+			},
+			{
+				value: 'Auto top-up',
+				to: '/autotopup',
+				LinkComponent: withRouter(NavLink)
+			},
+			
 		]
 	},
 	{
@@ -101,7 +109,11 @@ const accountDropdownProps = {
 		{ icon: 'settings', value: 'Settings' },
 		{ isDivider: true },
 		{ icon: 'help-circle', value: 'Need help?' },
-		{ icon: 'log-out', value: 'Sign out' }
+		{ icon: 'log-out',
+			value: 'Sign out' ,
+			to:'/logout',
+			LinkComponent: withRouter(NavLink)
+		   } 
 	]
 }
 
