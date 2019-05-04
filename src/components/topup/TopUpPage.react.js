@@ -1,81 +1,90 @@
 import React, { Component } from 'react'
 import SiteWrapper from '../../SiteWrapper.react'
+import API from '../../utils/API'
 import {
-	Page,
 	Grid,
 	Button,
-	StatsCard,
 	Card,
 	Dropdown,
-	Icon
+	Form as TablerForm
 } from 'tabler-react'
 
 export default class TopUpPage extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			isFetching: false,
+			message: '',
+			user: {
+				balance: ''
+			}
+		}
+	}
+
+	componentDidMount() {
+		API.get('/profile/').then(res => {
+			this.setState({ isFetching: true })
+			this.setState({ user: res.data })
+			this.setState({ isFetching: false })
+		})
+	}
+
+	handleChange = async () => {
+		const state = this.state
+		this.setState(state)
+	}
+
 	render() {
 		return (
 			<SiteWrapper>
-				<Page.Content title="ACCOUNT BALANCE">
-					<Grid.Row cards={true}>
-						<Grid.Col width={10} sm={10} lg={5}>
-							<StatsCard
-								layout={1}
-								movement={0}
-								total="$3.45"
-								label="Current Balance"
-							/>
-						</Grid.Col>
-					</Grid.Row>
-
-					<Grid.Row>
-						<Grid.Col width={3}>
-							<Button.List>
-								<Button block color="yellow" icon="coin">
-									{' '}
-									Automatic Payment{' '}
-								</Button>
-								<Button block color="blue" icon="settings" width="100%">
-									{' '}
-									Payment Settings
-								</Button>
-							</Button.List>
-						</Grid.Col>
-
-						<Dropdown
-							type="button"
-							block
-							color="green"
-							arrow
-							icon="dollar-sign"
-							triggerContent="TOP UP AMOUNT"
-							itemsObject={[
-								{
-									value: '$5.00'
-								},
-								{
-									value: '$10.00'
-								},
-								{
-									value: '$20.00'
-								},
-								{
-									value: '$30.00'
-								},
-								{
-									value: '$40.00'
-								},
-								{
-									value: '$50.00'
-								},
-								{
-									value: '$100.00'
-								},
-								{
-									value: '$150.00'
-								}
-							]}
+				<Grid.Col md={5}>
+					<TablerForm.FieldSet>
+						<center>
+							<h1>Top-Up Account</h1>
+						</center>
+						<Card
+							statusColor="blue"
+							title="Current Balance"
+							body={
+								<h1>
+									<center>${this.state.user.balance}</center>
+								</h1>
+							}
 						/>
-					</Grid.Row>
-				</Page.Content>
+
+						<Button.List>
+							<Button.Dropdown
+								block
+								value="TOP UP"
+								icon="dollar-sign"
+								color="green"
+							>
+								<Dropdown.Item>$5</Dropdown.Item>
+								<Dropdown.Item>$10</Dropdown.Item>
+								<Dropdown.Item>$20</Dropdown.Item>
+								<Dropdown.Item>$50</Dropdown.Item>
+							</Button.Dropdown>
+							<Button block color="blue" icon="coin">
+								{' '}
+								Automatic Payment{' '}
+							</Button>
+							<Button block color="blue" icon="settings">
+								{' '}
+								Payment Settings
+							</Button>
+							<Button
+								block
+								color="yellow"
+								type="Back"
+								onClick={() => {
+									this.props.history.push('/')
+								}}
+							>
+								Back to Home
+							</Button>
+						</Button.List>
+					</TablerForm.FieldSet>
+				</Grid.Col>
 			</SiteWrapper>
 		)
 	}
