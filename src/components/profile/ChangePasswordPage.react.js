@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Formik, Form } from 'formik'
 import API from '../../utils/API'
 import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
-import SiteWrapper from './../../SiteWrapper.react'
+import SiteWrapper from '../../SiteWrapper.react'
 
 export default class ChangePasswordPage extends Component {
 	constructor(props) {

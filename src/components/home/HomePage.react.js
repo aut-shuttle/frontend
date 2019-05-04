@@ -60,7 +60,7 @@ export default class LoginPage extends Component {
 							<a
 								style={{ cursor: 'pointer' }}
 								onClick={() => {
-									this.props.history.push('/')
+									this.props.history.push('/topup')
 								}}
 							>
 								<Card>

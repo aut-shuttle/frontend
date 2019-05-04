@@ -48,41 +48,28 @@ const navBarItems: Array<navItem> = [
 	{
 		value: 'Top Up Balance',
 		icon: 'credit-card',
-		subItems: [
-			{
-				value: 'Check Balance',
-				to: '/balance',
-				LinkComponent: withRouter(NavLink)
-			},
-			{
-				value: 'Top Up Balance',
-				to: '/topup',
-				LinkComponent: withRouter(NavLink)
-			}
-		]
+		to: '/topup',
+		LinkComponent: withRouter(NavLink)
 	},
 	{
 		value: 'Profile',
 		icon: 'user',
 		subItems: [
-			
 			{
-				
-				value: 'Edit Profile',
+				value: 'View Profile',
 				to: '/profile',
+				LinkComponent: withRouter(NavLink)
+			},
+			{
+				value: 'Edit Profile',
+				to: '/editprofile',
 				LinkComponent: withRouter(NavLink)
 			},
 			{
 				value: 'Change Password',
 				to: '/changePassword',
 				LinkComponent: withRouter(NavLink)
-			},
-			{
-				value: 'Auto top-up',
-				to: '/autotopup',
-				LinkComponent: withRouter(NavLink)
-			},
-			
+			}
 		]
 	},
 	{
@@ -105,16 +92,17 @@ const accountDropdownProps = {
 	name: 'Hamish Maritz',
 	description: 'Student at AUT',
 	options: [
-		{ icon: 'user', value: 'Profile' },
+		{ icon: 'user', value: 'Profile', to: '/profile' },
 		{ icon: 'settings', value: 'Settings' },
 		{ isDivider: true },
 		{ icon: 'help-circle', value: 'Need help?' },
-		{ icon: 'log-out',
-			value: 'Sign out' ,
+		{
+			icon: 'log-out',
+			value: 'Sign out',
 			to: '/logout',
-			
+
 			LinkComponent: withRouter(NavLink)
-		   } 
+		}
 	]
 }
 
@@ -151,56 +139,55 @@ class SiteWrapper extends React.Component<Props, State> {
 		]
 	}
 
-  render(): React.Node {
-    const notificationsObjects = this.state.notificationsObjects || [];
-    const unreadCount = this.state.notificationsObjects.reduce(
-      (a, v) => a || v.unread,
-      false
-    );
-    return (
-      <Site.Wrapper
-        headerProps={{
-          href: "/",
-          alt: "AUT University",
-          imageURL: "images/shuttle.png",
-          notificationsTray: {
-            notificationsObjects,
-            markAllAsRead: () =>
-              this.setState(
-                () => ({
-                  notificationsObjects: this.state.notificationsObjects.map(
-                    v => ({ ...v, unread: false })
-                  ),
-                }),
-                () =>
-                  setTimeout(
-                    () =>
-                      this.setState({
-                        notificationsObjects: this.state.notificationsObjects.map(
-                          v => ({ ...v, unread: true })
-                        ),
-                      }),
-                    5000
-                  )
-              ),
-            unread: unreadCount,
-          },
-          accountDropdown: accountDropdownProps,
-        }}
-        navProps={{ itemsObjects: navBarItems }}
-        routerContextComponentType={withRouter(RouterContextProvider)}
-        footerProps={{
-          links: [
-            <a href="#">AUT Website</a>,
-            <a href="#">Terms and Conditions</a>,
-      
-          ],
-        }}
-      >
-        {this.props.children}
-      </Site.Wrapper>
-    );
-  }
+	render(): React.Node {
+		const notificationsObjects = this.state.notificationsObjects || []
+		const unreadCount = this.state.notificationsObjects.reduce(
+			(a, v) => a || v.unread,
+			false
+		)
+		return (
+			<Site.Wrapper
+				headerProps={{
+					href: '/',
+					alt: 'AUT University',
+					imageURL: 'images/shuttle.png',
+					notificationsTray: {
+						notificationsObjects,
+						markAllAsRead: () =>
+							this.setState(
+								() => ({
+									notificationsObjects: this.state.notificationsObjects.map(
+										v => ({ ...v, unread: false })
+									)
+								}),
+								() =>
+									setTimeout(
+										() =>
+											this.setState({
+												notificationsObjects: this.state.notificationsObjects.map(
+													v => ({ ...v, unread: true })
+												)
+											}),
+										5000
+									)
+							),
+						unread: unreadCount
+					},
+					accountDropdown: accountDropdownProps
+				}}
+				navProps={{ itemsObjects: navBarItems }}
+				routerContextComponentType={withRouter(RouterContextProvider)}
+				footerProps={{
+					links: [
+						<a href="#">AUT Website</a>,
+						<a href="#">Terms and Conditions</a>
+					]
+				}}
+			>
+				{this.props.children}
+			</Site.Wrapper>
+		)
+	}
 }
 
 export default SiteWrapper
