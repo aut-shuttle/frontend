@@ -64,15 +64,15 @@ export default class EditProfilePage extends Component {
 	render() {
 		const { message } = this.state
 		return (
-			<Page.Content>
-				<SiteWrapper>
+			<SiteWrapper>
+				<Page.Content>
 					<Formik onSubmit={this.handleSubmit}>
 						{props => (
 							<Form>
 								<Grid.Col md={6}>
 									<TablerForm.FieldSet>
 										<Alert type="primary">
-											<Alert.Link>Update Profile</Alert.Link>
+											<Alert.Link>Edit Profile</Alert.Link>
 										</Alert>
 										<TablerForm.Input
 											name="fname"
@@ -154,8 +154,8 @@ export default class EditProfilePage extends Component {
 							</Form>
 						)}
 					</Formik>
-				</SiteWrapper>
-			</Page.Content>
+				</Page.Content>
+			</SiteWrapper>
 		)
 	}
 }
