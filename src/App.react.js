@@ -11,9 +11,7 @@ import ProfilePage from './components/profile/ProfilePage.react';
 import ChangePasswordPage from './components/profile/ChangePasswordPage.react';
 import LogoutPage from './components/profile/LogoutPage.react';
 
-type Props = {||};
-
-function App(props: Props): React.Node {
+function App(){
   return (
     <React.StrictMode>
       <Router>

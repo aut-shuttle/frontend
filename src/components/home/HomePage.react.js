@@ -9,7 +9,7 @@ export default class LoginPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			user: ''
+			user: { first_name: '' }
 		}
 	}
 
@@ -49,7 +49,11 @@ export default class LoginPage extends Component {
 							<Card
 								statusColor="blue"
 								title="Current Balance"
-								body={<center>${this.state.user.balance}</center>}
+								body={
+									<h1>
+										<center>${this.state.user.balance}</center>
+									</h1>
+								}
 							/>
 						</Grid.Col>
 						<Grid.Col md={3}>
