@@ -7,9 +7,9 @@ import "tabler-react/dist/Tabler.css";
 import LoginPage from "./components/login/LoginPage.react";
 import RegisterPage from "./components/register/RegisterPage.react";
 import HomePage from "./components/home/HomePage.react";
-import ProfilePage from './components/ProfilePage.react';
-import ChangePasswordPage from './components/ChangePasswordPage.react';
-import LogoutPage from './components/LogoutPage.react';
+import ProfilePage from './components/profile/ProfilePage.react';
+import ChangePasswordPage from './components/profile/ChangePasswordPage.react';
+import LogoutPage from './components/profile/LogoutPage.react';
 
 type Props = {||};
 

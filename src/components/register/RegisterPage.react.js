@@ -17,21 +17,19 @@ export default class LoginPage extends Component {
 	}
 
 	handleSubmit = (values, { props = this.props, setSubmitting }) => {
-		console.log(values)
 		setSubmitting(false)
 
 		const registerUser = {
 			email_address: values.email,
 			password: values.password,
 			first_name: values.first_name,
-            last_name: values.last_name,
-            studentid: values.studentid,
+			last_name: values.last_name,
+			studentid: values.studentid,
 			role_id: 3
 		}
 		API.post('/register', registerUser)
 			.then(result => {
-                localStorage.setItem('token', result.data.token)
-                localStorage.setItem('name', result.data.user.first_name +" " + result.data.user.last_name)
+				localStorage.setItem('token', result.data.token)
 				this.props.history.push('/')
 			})
 			.catch(error => {
@@ -152,8 +150,8 @@ export default class LoginPage extends Component {
 									/>
 									{props.errors.password && props.touched.password && (
 										<div style={{ color: 'red' }}>{props.errors.password}</div>
-                                    )}
-                                    &nbsp;
+									)}
+									&nbsp;
 									<Button
 										block
 										color="primary"
@@ -161,6 +159,16 @@ export default class LoginPage extends Component {
 										disabled={props.isSubmitting}
 									>
 										Register
+									</Button>
+									<Button
+										block
+										color="warning"
+										type="Login"
+										onClick={() => {
+											this.props.history.push('/login')
+										}}
+									>
+										Back to Login
 									</Button>
 									{message !== '' && (
 										<Alert type="danger">

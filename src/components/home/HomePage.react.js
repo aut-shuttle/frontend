@@ -15,18 +15,35 @@ export default class LoginPage extends Component {
 
 	componentDidMount() {
 		if (localStorage.getItem('token')) {
-			API.get('/profile/').then(res => {
-				this.setState({ user: res.data })
-			})
+			API.get('/profile/')
+				.then(res => {
+					this.setState({ isFetching: true })
+					this.setState({ user: res.data })
+					this.setState({ isFetching: false })
+				})
+				.catch(err => {
+					console.log(err)
+					window.location.reload()
+					//totally gash work around, triggers reload to get profile correctly, needs more fault finding
+				})
 		} else {
 			this.props.history.push('/login')
 		}
+	}
+	componentDidCatch(error, info) {
+		console.log(error, info)
 	}
 
 	render() {
 		return (
 			<SiteWrapper>
-				<Page.Content title={'Welcome, ' + this.state.user.first_name}>
+				<Page.Content
+					title={
+						this.state.isFetching
+							? 'Loading'
+							: 'Welcome, ' + this.state.user.first_name
+					}
+				>
 					<Grid.Row cards deck>
 						<Grid.Col md={3}>
 							<Card
