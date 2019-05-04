@@ -93,14 +93,11 @@ const accountDropdownProps = {
 	description: 'Student at AUT',
 	options: [
 		{ icon: 'user', value: 'Profile', to: '/profile' },
-		{ icon: 'settings', value: 'Settings' },
 		{ isDivider: true },
-		{ icon: 'help-circle', value: 'Need help?' },
 		{
 			icon: 'log-out',
 			value: 'Sign out',
 			to: '/logout',
-
 			LinkComponent: withRouter(NavLink)
 		}
 	]
