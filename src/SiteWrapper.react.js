@@ -1,43 +1,10 @@
-import * as React from 'react'
+import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
+import API from './utils/API'
 
-import {
-	Site,
-	Nav,
-	Grid,
-	List,
-	Button,
-	RouterContextProvider
-} from 'tabler-react'
+import { Site, RouterContextProvider } from 'tabler-react'
 
-import type { NotificationProps } from 'tabler-react'
-
-type Props = {|
-	+children: React.Node
-|}
-
-type State = {|
-	notificationsObjects: Array<NotificationProps>
-|}
-
-type subNavItem = {|
-	+value: string,
-	+to?: string,
-	+icon?: string,
-	+LinkComponent?: React.ElementType
-|}
-
-type navItem = {|
-	+value: string,
-	+to?: string,
-	+icon?: string,
-	+active?: boolean,
-	+LinkComponent?: React.ElementType,
-	+subItems?: Array<subNavItem>,
-	+useExact?: boolean
-|}
-
-const navBarItems: Array<navItem> = [
+const navBarItems = [
 	{
 		value: 'Home',
 		to: '/',
@@ -103,8 +70,9 @@ const accountDropdownProps = {
 	]
 }
 
-class SiteWrapper extends React.Component<Props, State> {
+class SiteWrapper extends Component {
 	state = {
+		user: { first_name: '', last_name: '' },
 		notificationsObjects: [
 			{
 				unread: true,
@@ -136,12 +104,36 @@ class SiteWrapper extends React.Component<Props, State> {
 		]
 	}
 
-	render(): React.Node {
+	componentDidMount() {
+		API.get('/profile/')
+			.then(res => {
+				this.setState({ user: res.data })
+				console.log(this.state)
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
+
+	render() {
 		const notificationsObjects = this.state.notificationsObjects || []
 		const unreadCount = this.state.notificationsObjects.reduce(
 			(a, v) => a || v.unread,
 			false
 		)
+		if (localStorage.getItem('token') != '') {
+			{
+				navBarItems[3] = {
+					icon: 'log-out',
+					value: 'Sign out',
+					to: '/logout',
+					LinkComponent: withRouter(NavLink)
+				}
+				navBarItems[4] = ''
+				accountDropdownProps.name =
+					this.state.user.first_name + ' ' + this.state.user.last_name
+			}
+		}
 		return (
 			<Site.Wrapper
 				headerProps={{
