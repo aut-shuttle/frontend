@@ -66,6 +66,12 @@ export default class TopUpPage extends Component {
 		const onCancel = data => console.log('Cancelled payment!', data)
 
 		const validTopupAmounts = [5, 10, 20, 50]
+
+		const client = {
+			sandbox:
+				'AYCKfuONytEMj8apXJCgd-rGgBHBZdrak8wQ_ACZ3XFfbIYzEY0lAQ67a11crVQozXS3XL2PY3SdLW0k',
+			production: '___'
+		}
 		return (
 			<SiteWrapper>
 				<Page.Content>
@@ -104,12 +110,8 @@ export default class TopUpPage extends Component {
 								</Button.Dropdown>
 								<center>
 									<PaypalExpressBtn
-										env={process.env.PAYPAL_ENV}
-										client={
-											process.env.PAYPAL_ENV === 'production'
-												? process.env.PAYPAL_CLIENT_ID_SANDBOX
-												: process.env.PAYPAL_CLIENT_ID_PRODUCTION
-										}
+										env={'sandbox'}
+										client={client}
 										currency={'NZD'}
 										total={5}
 										onError={onError}
