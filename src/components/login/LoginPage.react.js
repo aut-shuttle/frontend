@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import { Formik, Form } from 'formik'
 import API from '../../utils/API'
-import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
+import {
+	Page,
+	Grid,
+	Alert,
+	Form as TablerForm,
+	Button,
+	Icon
+} from 'tabler-react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
@@ -108,6 +115,7 @@ export default class LoginPage extends Component {
 										color="primary"
 										type="submit"
 										disabled={props.isSubmitting}
+										icon="log-in"
 									>
 										Login
 									</Button>
@@ -122,6 +130,7 @@ export default class LoginPage extends Component {
 										onClick={() => {
 											this.props.history.push('/register')
 										}}
+										icon="user-plus"
 									>
 										Register
 									</Button>
