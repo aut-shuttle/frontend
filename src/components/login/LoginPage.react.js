@@ -36,6 +36,8 @@ export default class LoginPage extends Component {
 				localStorage.setItem('token', result.data.token)
 				this.props.history.push('/')
 				setSubmitting(false)
+				// Triggers a reload to ensure the database connection is established. Without a refresh, the token isn't saved correctly to local storage.
+				window.location.reload()
 			})
 			.catch(error => {
 				if (error.response.status === 409) {

@@ -7,7 +7,7 @@ export default class LoginPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			message: ''
+			message: '',
 		}
 	}
 
@@ -17,22 +17,23 @@ export default class LoginPage extends Component {
 	}
 
 	handleSubmit = (values, { props = this.props, setSubmitting }) => {
-		console.log(values)
 		setSubmitting(false)
 
 		const registerUser = {
 			email_address: values.email,
 			password: values.password,
 			first_name: values.first_name,
-            last_name: values.last_name,
-            studentid: values.studentid,
+			last_name: values.last_name,
+			university_id: values.studentid,
 			role_id: 3
 		}
 		API.post('/register', registerUser)
 			.then(result => {
-                localStorage.setItem('token', result.data.token)
-                localStorage.setItem('name', result.data.user.first_name +" " + result.data.user.last_name)
+				localStorage.setItem('token', result.data.token)
 				this.props.history.push('/')
+				setSubmitting(false)
+				// Triggers a reload to ensure the database connection is established. Without a refresh, the token isn't saved correctly to local storage.
+				window.location.reload()
 			})
 			.catch(error => {
 				if (error.response.status === 409) {
@@ -152,8 +153,8 @@ export default class LoginPage extends Component {
 									/>
 									{props.errors.password && props.touched.password && (
 										<div style={{ color: 'red' }}>{props.errors.password}</div>
-                                    )}
-                                    &nbsp;
+									)}
+									&nbsp;
 									<Button
 										block
 										color="primary"
@@ -161,6 +162,16 @@ export default class LoginPage extends Component {
 										disabled={props.isSubmitting}
 									>
 										Register
+									</Button>
+									<Button
+										block
+										color="warning"
+										type="Login"
+										onClick={() => {
+											this.props.history.push('/login')
+										}}
+									>
+										Back to Login
 									</Button>
 									{message !== '' && (
 										<Alert type="danger">
