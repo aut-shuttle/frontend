@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import API from './utils/API'
-
 import { Site, RouterContextProvider } from 'tabler-react'
 
 const navBarItems = [
@@ -108,7 +107,6 @@ class SiteWrapper extends Component {
 		API.get('/profile/')
 			.then(res => {
 				this.setState({ user: res.data })
-				console.log(this.state)
 			})
 			.catch(err => {
 				console.log(err)
@@ -121,7 +119,7 @@ class SiteWrapper extends Component {
 			(a, v) => a || v.unread,
 			false
 		)
-		if (localStorage.getItem('token') != '') {
+		if (localStorage.getItem('token') !== '') {
 			{
 				navBarItems[3] = {
 					icon: 'log-out',

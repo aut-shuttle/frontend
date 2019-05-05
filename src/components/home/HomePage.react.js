@@ -3,7 +3,7 @@ import API from '../../utils/API'
 
 import { Page, Grid, Card, Icon, Alert } from 'tabler-react'
 
-import SiteWrapper from './../../SiteWrapper.react'
+import SiteWrapper from '../../SiteWrapper.react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
