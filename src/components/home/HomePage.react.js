@@ -9,7 +9,7 @@ export default class LoginPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			user: { first_name: '' }
+			user: { first_name: '', balance: '' }
 		}
 	}
 
@@ -23,8 +23,6 @@ export default class LoginPage extends Component {
 				})
 				.catch(err => {
 					console.log(err)
-					window.location.reload()
-					//totally gash work around, triggers reload to get profile correctly, needs more fault finding
 				})
 		} else {
 			this.props.history.push('/login')
