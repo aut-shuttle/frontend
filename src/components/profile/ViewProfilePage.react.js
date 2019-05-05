@@ -32,7 +32,6 @@ export default class ViewProfilePage extends Component {
 	}
 
 	render() {
-		const { message } = this.state
 		return (
 			<SiteWrapper>
 				<Page.Content>
