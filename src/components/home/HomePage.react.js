@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
 
-import { Page, Grid, Card, Icon } from 'tabler-react'
+import { Page, Grid, Card, Icon, Alert } from 'tabler-react'
 
 import SiteWrapper from './../../SiteWrapper.react'
 
@@ -43,6 +43,13 @@ export default class LoginPage extends Component {
 					}
 				>
 					<Grid.Col md={12}>
+						{console.log('email', this.state.user.email_verified)}
+						{this.state.user.email_verified === 0 && (
+							<Alert type="info" icon="info" isDismissible>
+								Hi {this.state.user.first_name}, looks like you are new around
+								here. Please verify your email using the link we sent you.
+							</Alert>
+						)}
 						<Grid.Row cards deck>
 							<Grid.Col md={6}>
 								<Card>
