@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default axios.create({
-	baseURL: 'https://aut-staging-api.herokuapp.com',
+	baseURL: 'http://localhost:3000',
 	responseType: 'json',
 	headers: { Authorization: `Bearer ${localStorage.getItem('token') || ''}` }
 })
