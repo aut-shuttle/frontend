@@ -54,7 +54,7 @@ const navBarItems = [
 ]
 
 const accountDropdownProps = {
-	avatarURL: './images/hamishimage.jpg',
+	avatarURL: './images/default-avatar.png',
 	name: 'Hamish Maritz',
 	description: 'Student at AUT',
 	options: [
