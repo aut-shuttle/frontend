@@ -23,6 +23,23 @@ export default class LoginPage extends Component {
 		this.setState(state)
 	}
 
+	handleValidate = values => {
+		const errors = {}
+		if (!values.email) errors.email = 'Required'
+		if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+			errors.email = 'You must supply a valid email address'
+		}
+		else if (
+			values.email
+				.split('@')
+				.slice(1)
+				.indexOf('autuni.ac.nz') === -1
+		) {
+			errors.email = 'Not a valid AUT Email Address'
+		}
+		return errors
+	}
+
 	handleSubmit = (values, { props = this.props, setSubmitting }) => {
 		setSubmitting(false)
 
@@ -64,7 +81,7 @@ export default class LoginPage extends Component {
 				<Formik
 					initialValues={{ email: '', password: '' }}
 					onSubmit={this.handleSubmit}
-					//validate={this.handleValidate}
+					validate={this.handleValidate}
 				>
 					{props => (
 						<Form>
