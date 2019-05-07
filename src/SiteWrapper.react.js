@@ -84,7 +84,13 @@ const navBarItems: Array<navItem> = [
 		to: '/register',
 		icon: 'file',
 		LinkComponent: withRouter(NavLink)
-	}
+	},
+	{
+		value: 'Closing Account',
+		to: '/closingaccount',
+		icon: 'file',
+		LinkComponent: withRouter(NavLink)
+	},
 ]
 
 const accountDropdownProps = {
