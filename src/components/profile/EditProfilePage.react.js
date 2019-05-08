@@ -15,9 +15,10 @@ export default class EditProfilePage extends Component {
 			message: '',
 			user: '',
 			
+			
 		}
 	}
-
+    
 	componentDidMount() {
 		API.get('/profile/').then(res => {
 			this.setState({ isFetching: true })
@@ -38,9 +39,10 @@ export default class EditProfilePage extends Component {
 			first_name: values.fname,
 			last_name: values.lname,
 			university_id: values.uid,
-			id_expiry: values.idexpiry
+			id_expiry: values.idexpiry,
+			
 		}
-		
+
 		API.patch('/profile', updateprofile)
 			.then(res => {
 				this.props.history.push('/')
@@ -140,7 +142,7 @@ export default class EditProfilePage extends Component {
 											type="submit"
 											onClick={() => {
 												if( window.confirm("Are you sure you want to delete your account? Deleting an account does not refund any balance?")){
-													API.delete('/users/:id')
+													API.delete('/users/:id',{})
 													this.props.history.push('/register')
 												}else{
 													this.props.history.push('/editprofile')
