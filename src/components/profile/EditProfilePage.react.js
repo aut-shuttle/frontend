@@ -4,7 +4,6 @@ import API from '../../utils/API'
 import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
 import SiteWrapper from '../../SiteWrapper.react'
 
-
 //Back end needs to be corrected to allow for either entries to be the same, or error checking needs to be added here for that
 
 export default class EditProfilePage extends Component {
@@ -13,12 +12,10 @@ export default class EditProfilePage extends Component {
 		this.state = {
 			isFetching: false,
 			message: '',
-			user: '',
-			
-			
+			user: ''
 		}
 	}
-    
+
 	componentDidMount() {
 		API.get('/profile/').then(res => {
 			this.setState({ isFetching: true })
@@ -26,21 +23,20 @@ export default class EditProfilePage extends Component {
 			this.setState({ isFetching: false })
 		})
 	}
-   
+
 	handleChange = async () => {
 		const state = this.state
 		this.setState(state)
 	}
-    
+
 	handleSubmit = (values, { setSubmitting }) => {
 		setSubmitting(true)
-       
+
 		const updateprofile = {
 			first_name: values.fname,
 			last_name: values.lname,
 			university_id: values.uid,
-			id_expiry: values.idexpiry,
-			
+			id_expiry: values.idexpiry
 		}
 
 		API.patch('/profile', updateprofile)
@@ -141,11 +137,17 @@ export default class EditProfilePage extends Component {
 											color="primary"
 											type="submit"
 											onClick={() => {
-												if( window.confirm("Are you sure you want to delete your account? Deleting an account does not refund any balance?")){
-													API.delete('/users/:id',{})
-													this.props.history.push('/register')
-												}else{
-													this.props.history.push('/editprofile')
+												if (
+													window.confirm(
+														'We are sad to see you go! Are you sure you want to delete your account? Deleting this account does not refund any balance.'
+													)
+												) {
+													API.delete(`/users/${this.state.user.id}`).then(
+														res => {
+															localStorage.clear()
+															this.props.history.push('/register')
+														}
+													)
 												}
 											}}
 										>
@@ -174,10 +176,8 @@ export default class EditProfilePage extends Component {
 							</Form>
 						)}
 					</Formik>
-					
 				</Page.Content>
 			</SiteWrapper>
-			
 		)
 	}
 }
