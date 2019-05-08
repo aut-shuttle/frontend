@@ -130,11 +130,22 @@ export default class EditProfilePage extends Component {
 											type="submit"
 											disabled={props.isSubmitting}
 										>
-											Submit
+											Update
 										</Button>
 										<Button
 											block
-											color="primary"
+											color="warning"
+											type="Back"
+											onClick={() => {
+												this.props.history.push('/')
+											}}
+										>
+											Back
+										</Button>
+
+										<Button
+											block
+											color="danger"
 											type="submit"
 											onClick={() => {
 												if (
@@ -151,17 +162,7 @@ export default class EditProfilePage extends Component {
 												}
 											}}
 										>
-											Closing Account
-										</Button>
-										<Button
-											block
-											color="warning"
-											type="Back"
-											onClick={() => {
-												this.props.history.push('/')
-											}}
-										>
-											Back
+											Close My Account
 										</Button>
 
 										{message !== '' && (
