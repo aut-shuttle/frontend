@@ -84,8 +84,7 @@ const navBarItems: Array<navItem> = [
 		to: '/register',
 		icon: 'file',
 		LinkComponent: withRouter(NavLink)
-	},
-	
+	}
 ]
 
 const accountDropdownProps = {
