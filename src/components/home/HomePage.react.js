@@ -33,6 +33,17 @@ export default class LoginPage extends Component {
 	}
 
 	render() {
+		const emailUnverifiedAlert = () => {
+			return (
+				this.state.user.email_verified === 0 && (
+					<Alert type="info" icon="info" isDismissible>
+						Hi {this.state.user.first_name}, looks like you are new around here.
+						Please verify your email using the link we sent you.
+					</Alert>
+				)
+			)
+		}
+
 		return (
 			<SiteWrapper>
 				<Page.Content
@@ -43,13 +54,7 @@ export default class LoginPage extends Component {
 					}
 				>
 					<Grid.Col md={12}>
-						{console.log('email', this.state.user.email_verified)}
-						{this.state.user.email_verified === 0 && (
-							<Alert type="info" icon="info" isDismissible>
-								Hi {this.state.user.first_name}, looks like you are new around
-								here. Please verify your email using the link we sent you.
-							</Alert>
-						)}
+						{emailUnverifiedAlert()}
 						<Grid.Row cards deck>
 							<Grid.Col md={6}>
 								<Card>
