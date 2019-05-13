@@ -37,8 +37,8 @@ export default class LoginPage extends Component {
 			<SiteWrapper>
 				<Page.Content
 					title={
-						this.state.isFetching
-							? 'Loading'
+						!this.state.isFetching
+							? 'Loading...'
 							: 'Welcome, ' + this.state.user.first_name
 					}
 				>
