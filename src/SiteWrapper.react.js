@@ -127,7 +127,7 @@ class SiteWrapper extends Component {
 					to: '/logout',
 					LinkComponent: withRouter(NavLink)
 				}
-				navBarItems[4] = ''
+				navBarItems.length = 4
 				accountDropdownProps.name =
 					this.state.user.first_name + ' ' + this.state.user.last_name
 			}

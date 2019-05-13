@@ -9,7 +9,7 @@ export default class LogoutdPage extends Component {
 	render() {
 		return (
 			<div>
-				<a href="#" onClick={this.logout()}>
+				<a href="/" onClick={this.logout()}>
 					LOGOUT
 				</a>
 			</div>

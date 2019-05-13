@@ -19,6 +19,7 @@
     "dotenv-safe": "^6.1.0",
     "formik": "^1.5.2",
     "google-maps": "^3.3.0",
+    "qrcode.react": "^0.9.3",
     "react": "^16.8.6",
     "react-async-script-loader": "^0.3.0",
     "react-c3js": "^0.1.20",

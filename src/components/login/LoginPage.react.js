@@ -6,9 +6,8 @@ import {
 	Grid,
 	Alert,
 	Form as TablerForm,
-	Button,
-	Icon
-} from 'tabler-react'
+	Button
+	} from 'tabler-react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
