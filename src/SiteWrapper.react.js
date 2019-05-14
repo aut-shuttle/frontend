@@ -55,8 +55,8 @@ const navBarItems = [
 
 const accountDropdownProps = {
 	avatarURL: './images/default-avatar.png',
-	name: 'Hamish Maritz',
-	description: 'Student at AUT',
+	name: 'Welcome',
+	description: 'AUT Shuttle User',
 	options: [
 		{ icon: 'user', value: 'Profile', to: '/profile' },
 		{ isDivider: true },
@@ -71,36 +71,7 @@ const accountDropdownProps = {
 
 class SiteWrapper extends Component {
 	state = {
-		user: { first_name: '', last_name: '' },
-		notificationsObjects: [
-			{
-				unread: true,
-				message: (
-					<React.Fragment>
-						<strong>Olaf</strong> just topped his balance!
-					</React.Fragment>
-				),
-				time: '10 minutes ago'
-			},
-			{
-				unread: true,
-				message: (
-					<React.Fragment>
-						<strong>Thea</strong> just topped up her balance.
-					</React.Fragment>
-				),
-				time: '1 hour ago'
-			},
-			{
-				unread: false,
-				message: (
-					<React.Fragment>
-						<strong>Mike</strong> just broke the API(Again!)
-					</React.Fragment>
-				),
-				time: '2 hours ago'
-			}
-		]
+		user: { first_name: '', last_name: '', role: {} }
 	}
 
 	componentDidMount() {
@@ -114,11 +85,16 @@ class SiteWrapper extends Component {
 	}
 
 	render() {
-		const notificationsObjects = this.state.notificationsObjects || []
-		const unreadCount = this.state.notificationsObjects.reduce(
-			(a, v) => a || v.unread,
-			false
-		)
+		const getUserDescription = () => {
+			if (this.state.user.role.id === 1) {
+				return 'Shuttle Admin'
+			} else if (this.state.user.role.id === 2) {
+				return 'Shuttle Driver'
+			} else if (this.state.user.role.id === 3) {
+				return 'Shuttle Passenger'
+			}
+		}
+
 		if (localStorage.getItem('token') !== '') {
 			{
 				navBarItems[3] = {
@@ -130,36 +106,16 @@ class SiteWrapper extends Component {
 				navBarItems.length = 4
 				accountDropdownProps.name =
 					this.state.user.first_name + ' ' + this.state.user.last_name
+				accountDropdownProps.description = getUserDescription()
 			}
 		}
+
 		return (
 			<Site.Wrapper
 				headerProps={{
 					href: '/',
 					alt: 'AUT University',
 					imageURL: 'images/shuttle.png',
-					notificationsTray: {
-						notificationsObjects,
-						markAllAsRead: () =>
-							this.setState(
-								() => ({
-									notificationsObjects: this.state.notificationsObjects.map(
-										v => ({ ...v, unread: false })
-									)
-								}),
-								() =>
-									setTimeout(
-										() =>
-											this.setState({
-												notificationsObjects: this.state.notificationsObjects.map(
-													v => ({ ...v, unread: true })
-												)
-											}),
-										5000
-									)
-							),
-						unread: unreadCount
-					},
 					accountDropdown: accountDropdownProps
 				}}
 				navProps={{ itemsObjects: navBarItems }}
