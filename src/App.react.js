@@ -10,6 +10,7 @@ import EditProfilePage from './components/profile/EditProfilePage.react'
 import ChangePasswordPage from './components/profile/ChangePasswordPage.react'
 import TopUpPage from './components/topup/TopUpPage.react'
 import LogoutPage from './components/profile/LogoutPage.react'
+import TagOnPage from './components/tagon/TagOnPage.react'
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 					<Route exact path="/changePassword" component={ChangePasswordPage} />
 					<Route exact path="/topup" component={TopUpPage} />
 					<Route exact path="/logout" component={LogoutPage} />
+					<Route exact path="/tagon" component={TagOnPage} />
 				</Switch>
 			</Router>
 		</React.StrictMode>

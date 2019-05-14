@@ -7,8 +7,7 @@ import {
 	Card,
 	Dropdown,
 	Form as TablerForm,
-	Page,
-	Icon
+	Page
 } from 'tabler-react'
 import PaypalExpressBtn from 'react-paypal-express-checkout'
 
@@ -26,11 +25,12 @@ export default class TopUpPage extends Component {
 	}
 
 	componentDidMount() {
-		API.get('/profile/').then(res => {
-			this.setState({ isFetching: true })
-			this.setState({ user: res.data })
-			this.setState({ isFetching: false })
-		})
+		API.get('/profile/')
+			.then(res => {
+				this.setState({ isFetching: true })
+				this.setState({ user: res.data })
+			})
+			.then(this.setState({ isFetching: false }))
 	}
 
 	handleChange = async () => {
@@ -85,7 +85,11 @@ export default class TopUpPage extends Component {
 								title="Current Balance"
 								body={
 									<h1>
-										<center>${this.state.user.balance}</center>
+										<center>
+											{!this.state.isFetching
+												? 'Loading....'
+												: '$' + this.state.user.balance}
+										</center>
 									</h1>
 								}
 							/>
