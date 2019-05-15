@@ -32,12 +32,11 @@
     "tabler-react": "^1.29.0"
   },
   "scripts": {
-    "start": "serve -s build",
+    "start": "react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write --config .prettierrc.json \"**/*.js\"",
-    "heroku-postbuild": "npm run build"
+    "format": "prettier --write --config .prettierrc.json \"**/*.js\""
   },
   "eslintConfig": {
     "extends": "react-app"
