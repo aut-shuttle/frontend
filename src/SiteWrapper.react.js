@@ -1,43 +1,9 @@
-import * as React from 'react'
+import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
+import API from './utils/API'
+import { Site, RouterContextProvider } from 'tabler-react'
 
-import {
-	Site,
-	Nav,
-	Grid,
-	List,
-	Button,
-	RouterContextProvider
-} from 'tabler-react'
-
-import type { NotificationProps } from 'tabler-react'
-
-type Props = {|
-	+children: React.Node
-|}
-
-type State = {|
-	notificationsObjects: Array<NotificationProps>
-|}
-
-type subNavItem = {|
-	+value: string,
-	+to?: string,
-	+icon?: string,
-	+LinkComponent?: React.ElementType
-|}
-
-type navItem = {|
-	+value: string,
-	+to?: string,
-	+icon?: string,
-	+active?: boolean,
-	+LinkComponent?: React.ElementType,
-	+subItems?: Array<subNavItem>,
-	+useExact?: boolean
-|}
-
-const navBarItems: Array<navItem> = [
+const navBarItems = [
 	{
 		value: 'Home',
 		to: '/',
@@ -88,9 +54,9 @@ const navBarItems: Array<navItem> = [
 ]
 
 const accountDropdownProps = {
-	avatarURL: './images/hamishimage.jpg',
-	name: 'Hamish Maritz',
-	description: 'Student at AUT',
+	avatarURL: './images/default-avatar.png',
+	name: 'Welcome',
+	description: 'AUT Shuttle User',
 	options: [
 		{ icon: 'user', value: 'Profile', to: '/profile' },
 		{ isDivider: true },
@@ -103,73 +69,53 @@ const accountDropdownProps = {
 	]
 }
 
-class SiteWrapper extends React.Component<Props, State> {
+class SiteWrapper extends Component {
 	state = {
-		notificationsObjects: [
-			{
-				unread: true,
-				message: (
-					<React.Fragment>
-						<strong>Olaf</strong> just topped his balance!
-					</React.Fragment>
-				),
-				time: '10 minutes ago'
-			},
-			{
-				unread: true,
-				message: (
-					<React.Fragment>
-						<strong>Thea</strong> just topped up her balance.
-					</React.Fragment>
-				),
-				time: '1 hour ago'
-			},
-			{
-				unread: false,
-				message: (
-					<React.Fragment>
-						<strong>Mike</strong> just broke the API(Again!)
-					</React.Fragment>
-				),
-				time: '2 hours ago'
-			}
-		]
+		user: { first_name: '', last_name: '', role: {} }
 	}
 
-	render(): React.Node {
-		const notificationsObjects = this.state.notificationsObjects || []
-		const unreadCount = this.state.notificationsObjects.reduce(
-			(a, v) => a || v.unread,
-			false
-		)
+	componentDidMount() {
+		API.get('/profile/')
+			.then(res => {
+				this.setState({ user: res.data })
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
+
+	render() {
+		const getUserDescription = () => {
+			if (this.state.user.role.id === 1) {
+				return 'Shuttle Admin'
+			} else if (this.state.user.role.id === 2) {
+				return 'Shuttle Driver'
+			} else if (this.state.user.role.id === 3) {
+				return 'Shuttle Passenger'
+			}
+		}
+
+		if (localStorage.getItem('token') !== '') {
+			{
+				navBarItems[3] = {
+					icon: 'log-out',
+					value: 'Sign out',
+					to: '/logout',
+					LinkComponent: withRouter(NavLink)
+				}
+				navBarItems.length = 4
+				accountDropdownProps.name =
+					this.state.user.first_name + ' ' + this.state.user.last_name
+				accountDropdownProps.description = getUserDescription()
+			}
+		}
+
 		return (
 			<Site.Wrapper
 				headerProps={{
 					href: '/',
 					alt: 'AUT University',
 					imageURL: 'images/shuttle.png',
-					notificationsTray: {
-						notificationsObjects,
-						markAllAsRead: () =>
-							this.setState(
-								() => ({
-									notificationsObjects: this.state.notificationsObjects.map(
-										v => ({ ...v, unread: false })
-									)
-								}),
-								() =>
-									setTimeout(
-										() =>
-											this.setState({
-												notificationsObjects: this.state.notificationsObjects.map(
-													v => ({ ...v, unread: true })
-												)
-											}),
-										5000
-									)
-							),
-						unread: unreadCount
-					},
 					accountDropdown: accountDropdownProps
 				}}
 				navProps={{ itemsObjects: navBarItems }}
