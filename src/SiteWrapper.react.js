@@ -35,7 +35,15 @@ const navBarItems = [
 				value: 'Change Password',
 				to: '/changePassword',
 				LinkComponent: withRouter(NavLink)
-			}
+			},
+			{
+				value: 'Bus Dashboard',
+				to: '/busdashboard',
+				LinkComponent: withRouter(NavLink)
+
+				// will this dashboard just appear when the user log in is identified as a bus driver?
+				
+			},
 		]
 	},
 	{
