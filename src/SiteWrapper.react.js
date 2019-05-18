@@ -17,6 +17,7 @@ const navBarItems = [
 		to: '/topup',
 		LinkComponent: withRouter(NavLink)
 	},
+	
 	{
 		value: 'Profile',
 		icon: 'user',
@@ -37,6 +38,13 @@ const navBarItems = [
 				LinkComponent: withRouter(NavLink)
 			}
 		]
+
+	},
+	{
+		value: 'Bus Schedule',
+	
+		to: '/busschedule',
+		LinkComponent: withRouter(NavLink)
 	},
 	{
 		value: 'Login',
@@ -97,13 +105,13 @@ class SiteWrapper extends Component {
 
 		if (localStorage.getItem('token') !== '') {
 			{
-				navBarItems[3] = {
+				navBarItems[4] = {
 					icon: 'log-out',
 					value: 'Sign out',
 					to: '/logout',
 					LinkComponent: withRouter(NavLink)
 				}
-				navBarItems.length = 4
+				navBarItems.length = 5
 				accountDropdownProps.name =
 					this.state.user.first_name + ' ' + this.state.user.last_name
 				accountDropdownProps.description = getUserDescription()

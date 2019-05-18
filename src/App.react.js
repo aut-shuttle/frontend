@@ -11,7 +11,7 @@ import ChangePasswordPage from './components/profile/ChangePasswordPage.react'
 import TopUpPage from './components/topup/TopUpPage.react'
 import LogoutPage from './components/profile/LogoutPage.react'
 import TagOnPage from './components/tagon/TagOnPage.react'
-
+import BusSchedulePage from './components/busschedule/BusSchedulePage.react'
 function App() {
 	return (
 		<React.StrictMode>
@@ -26,6 +26,7 @@ function App() {
 					<Route exact path="/topup" component={TopUpPage} />
 					<Route exact path="/logout" component={LogoutPage} />
 					<Route exact path="/tagon" component={TagOnPage} />
+					<Route exact path="/busschedule" component={BusSchedulePage} />
 				</Switch>
 			</Router>
 		</React.StrictMode>
