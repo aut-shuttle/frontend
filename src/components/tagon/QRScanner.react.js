@@ -20,7 +20,7 @@ export default class QRScanner extends Component {
 		}
 	}
 	handleError(err) {
-		//console.error(err)
+		console.error(err)
 	}
 	render() {
 		const previewStyle = {
