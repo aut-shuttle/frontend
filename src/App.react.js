@@ -11,6 +11,7 @@ import ChangePasswordPage from './components/profile/ChangePasswordPage.react'
 import TopUpPage from './components/topup/TopUpPage.react'
 import LogoutPage from './components/profile/LogoutPage.react'
 import TagOnPage from './components/tagon/TagOnPage.react'
+import QRScanner from './components/QRScanner.react'
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route exact path="/topup" component={TopUpPage} />
 					<Route exact path="/logout" component={LogoutPage} />
 					<Route exact path="/tagon" component={TagOnPage} />
+					<Route exact path="/qrscanner" component={QRScanner} />
 				</Switch>
 			</Router>
 		</React.StrictMode>
