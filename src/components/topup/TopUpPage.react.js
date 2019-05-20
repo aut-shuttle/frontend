@@ -119,17 +119,10 @@ export default class TopUpPage extends Component {
 										onCancel={onCancel}
 									/>
 								</center>
-								<Button block color="blue" icon="plus-circle">
-									{' '}
-									Automatic Payment{' '}
-								</Button>
-								<Button block color="blue" icon="settings">
-									{' '}
-									Payment Settings
-								</Button>
+								
 								<Button
 									block
-									color="yellow"
+									color="blue"
 									type="Back"
 									onClick={() => {
 										this.props.history.push('/')

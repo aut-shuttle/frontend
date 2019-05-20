@@ -65,7 +65,13 @@ export default class ViewProfilePage extends Component {
 									<Button link="/journeypage" block color="yellow">
 										Journeys
 									</Button>
-									<Button block color="green">
+									<Button 
+									block 
+									color="green"
+									onClick={() => {
+										this.props.history.push('/editprofile')
+									}}
+									>
 										Profile Settings
 									</Button>
 								</Button.List>
