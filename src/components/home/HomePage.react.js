@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
-
 import { Page, Grid, Card, Icon, Alert } from 'tabler-react'
-
 import SiteWrapper from '../../SiteWrapper.react'
 
 export default class LoginPage extends Component {
@@ -19,8 +17,8 @@ export default class LoginPage extends Component {
 				.then(res => {
 					this.setState({ isFetching: true })
 					this.setState({ user: res.data })
-					this.setState({ isFetching: false })
 				})
+				.then(this.setState({ isFetching: false }))
 				.catch(err => {
 					console.log(err)
 				})
@@ -33,17 +31,27 @@ export default class LoginPage extends Component {
 	}
 
 	render() {
+		const emailUnverifiedAlert = () => {
+			return (
+				this.state.user.email_verified === 0 && (
+					<Alert type="info" icon="info" isDismissible>
+						Hi {this.state.user.first_name}, looks like you are new around here.
+						Please verify your email using the link we sent you.
+					</Alert>
+				)
+			)
+		}
+
 		return (
 			<SiteWrapper>
 				<Page.Content
 					title={
-						this.state.isFetching
-							? 'Loading'
+						!this.state.isFetching
+							? 'Loading...'
 							: 'Welcome, ' + this.state.user.first_name
 					}
 				>
 					<Grid.Col md={12}>
-						{console.log('email', this.state.user.email_verified)}
 						{this.state.user.email_verified === 0 && (
 							<Alert type="info" icon="info" isDismissible>
 								Hi {this.state.user.first_name}, looks like you are new around
@@ -59,7 +67,12 @@ export default class LoginPage extends Component {
 									</Card.Header>
 									<Card.Body>
 										<h1>
-											<center>${this.state.user.balance}</center>
+											<center>
+												
+												{!this.state.isFetching
+													? 'Loading....'
+													: "$" + this.state.user.balance}
+											</center>
 										</h1>
 									</Card.Body>
 									<Card.Footer>
@@ -92,7 +105,7 @@ export default class LoginPage extends Component {
 								<a
 									style={{ cursor: 'pointer' }}
 									onClick={() => {
-										this.props.history.push('/')
+										this.props.history.push('/tagon')
 									}}
 								>
 									<Card>
@@ -101,30 +114,7 @@ export default class LoginPage extends Component {
 											<Card.Title>Tag On!</Card.Title>
 										</Card.Header>
 										<Card.Body>
-											{
-												<center
-													onClick={() => {
-														let newBalance = parseFloat(
-															parseFloat(this.state.user.balance) +
-																parseFloat(-15.5)
-														)
-														if (newBalance >= 0) {
-															this.setState(
-																state => (
-																	(state.user.balance = newBalance.toFixed(2)),
-																	state
-																)
-															)
-														} else {
-															alert(
-																"Please top up! You don't have enough funds to tag on."
-															)
-														}
-													}}
-												>
-													Click here to Tag On!
-												</center>
-											}
+											{<center>Click here to Tag On!</center>}
 										</Card.Body>
 									</Card>
 								</a>
