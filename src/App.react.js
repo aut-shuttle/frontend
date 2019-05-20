@@ -25,8 +25,7 @@ function App() {
 					<Route exact path="/changePassword" component={ChangePasswordPage} />
 					<Route exact path="/topup" component={TopUpPage} />
 					<Route exact path="/logout" component={LogoutPage} />
-					<Route exact path="/busdashbaord" component={BusDashboardPage}/>
-				
+					<Route exact path="/busdashboard" component={BusDashboardPage} />
 				</Switch>
 			</Router>
 		</React.StrictMode>

@@ -44,7 +44,7 @@ export default class BusDashboard extends Component {
 				>
 					<Grid.Col md={12}>
 						{console.log('email', this.state.user.email_verified)}
-					
+
 						<Grid.Row cards deck>
 							<Grid.Col md={6}>
 								<Card>
@@ -53,31 +53,27 @@ export default class BusDashboard extends Component {
 										<Card.Title>Journeys for today...</Card.Title>
 									</Card.Header>
 
-                                    <Card.body>
-                                       
-                                    </Card.body>
-									
+									<Card.body />
+
 									<Card.Footer>
 										<Card.body>Have a safe journey!</Card.body>
 									</Card.Footer>
 								</Card>
 							</Grid.Col>
 							<Grid.Col md={6}>
-                                <Button 
-                                    block
-                                    color = "yellow"
-                                    type = "QR Access"
-                                    icon = "square"
-
-                                    onClick={() => {
-                                        this.props.history("/profile") //whatever the QR scanner link is (check with mike)
-                                    }}
-                                >
-                                    QR SCANNER
-                                </Button>
+								<Button
+									block
+									color="yellow"
+									type="QR Access"
+									icon="square"
+									onClick={() => {
+										this.props.history('/profile') //whatever the QR scanner link is (check with mike)
+									}}
+								>
+									QR SCANNER
+								</Button>
 							</Grid.Col>
 						</Grid.Row>
-						
 					</Grid.Col>
 				</Page.Content>
 			</SiteWrapper>

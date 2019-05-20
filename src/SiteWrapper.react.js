@@ -42,8 +42,7 @@ const navBarItems = [
 				LinkComponent: withRouter(NavLink)
 
 				// will this dashboard just appear when the user log in is identified as a bus driver?
-				
-			},
+			}
 		]
 	},
 	{
