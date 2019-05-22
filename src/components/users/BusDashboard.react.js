@@ -48,55 +48,17 @@ export default class BusDashboard extends Component {
 					<Grid.Col md={12}>
 						
 						<Grid.Row cards deck>
+							
 							<Grid.Col md={6}>
-								<Card>
-									<Card.Header>
-										<h4> Today's Journeys... </h4>
+								<Card
+								statusColor = "blue"
+								>
+									<Card.Header
+									>
+										
+										<h4> Your Journeys... </h4>
 									</Card.Header>
-{/* 
-									<Card.Body>
-										6:30am || City - North Shore 
-										<Dropdown
-											type="StartTrip"
-											color="secondary"
-											arrow
-											icon="bus"
-											triggerContent="Start Trip"
-											itemsObject={[
-												{
-												value: "Scan Passengers ",
-												icon: "maximize",
-												},
-												{
-												value: "View Passengers",
-												icon: "users",
-												},
-											]}
-										/>
-									</Card.Body>
 
-									<Card.Body>
-										7:00am || City - North Shore 
-										<Dropdown
-											type="StartTrip"
-											color="secondary"
-											arrow
-											icon="bus"
-											triggerContent="Start Trip"
-											itemsObject={[
-												{
-												value: "Scan Passengers ",
-												icon: "maximize",
-												},
-												{
-												value: "View Passengers",
-												icon: "users",
-												},
-											]}
-										/>
-									</Card.Body> */}
-
-									
 									<List.Group>
 
 										
@@ -128,17 +90,39 @@ export default class BusDashboard extends Component {
 										]}
 										/>
 									</List.Group>
-
-									
-
-									<Card.Footer>
-										Safe Travels!
-									</Card.Footer>
 								</Card>
+								<a>
+									<Grid.Row  md ={6}>
+
+										<Grid.Col>
+											
+											<Card 
+											statusColor = "yellow"
+											title={<h4>Total Journeys Today:</h4>}
+											body ={<center><h1>15</h1></center>}
+											/>
+										</Grid.Col>
+
+										<Grid.Col>
+											<Card
+											statusColor = "green"
+											title={<h4>Fun Fact:</h4>}
+											body={'I have been driving busses for 15 years!'}
+											/>
+										</Grid.Col>
+
+									</Grid.Row>
+								</a>
 							</Grid.Col>
+
+							
+							
 
 						</Grid.Row>
 					</Grid.Col>
+					<Card.Footer>
+						Safe Travels!
+					</Card.Footer>
 				</Page.Content>
 			</SiteWrapper>
 		)
