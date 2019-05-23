@@ -38,6 +38,7 @@ export default class EditProfilePage extends Component {
 			university_id: values.uid,
 			id_expiry: values.idexpiry
 		}
+
 		API.patch('/profile', updateprofile)
 			.then(res => {
 				this.props.history.push('/')
@@ -129,7 +130,7 @@ export default class EditProfilePage extends Component {
 											type="submit"
 											disabled={props.isSubmitting}
 										>
-											Submit
+											Update
 										</Button>
 										<Button
 											block
@@ -140,6 +141,28 @@ export default class EditProfilePage extends Component {
 											}}
 										>
 											Back
+										</Button>
+
+										<Button
+											block
+											color="danger"
+											type="submit"
+											onClick={() => {
+												if (
+													window.confirm(
+														'We are sad to see you go! Are you sure you want to delete your account? Deleting this account does not refund any balance.'
+													)
+												) {
+													API.delete(`/users/${this.state.user.id}`).then(
+														res => {
+															localStorage.clear()
+															this.props.history.push('/register')
+														}
+													)
+												}
+											}}
+										>
+											Close My Account
 										</Button>
 
 										{message !== '' && (

@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/aut-shuttle/frontend#readme",
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
     "d3-scale": "^3.0.0",
     "dotenv-safe": "^6.1.0",

@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import { Formik, Form } from 'formik'
 import API from '../../utils/API'
-import {
-	Page,
-	Grid,
-	Alert,
-	Form as TablerForm,
-	Button
-	} from 'tabler-react'
+import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
@@ -46,13 +40,17 @@ export default class LoginPage extends Component {
 				window.location.reload()
 			})
 			.catch(error => {
-				if (error.response.status === 409) {
+				if (!error.response) {
+					setSubmitting(false)
+					this.setState({
+						message: 'API is down, please start the API'
+					})
+				} else if (error.response.status === 409) {
 					setSubmitting(false)
 					this.setState({
 						message: 'Username or password are incorrect'
 					})
-				}
-				if (error.response.status === 404) {
+				} else if (error.response.status === 404) {
 					setSubmitting(false)
 					this.setState({
 						message: 'User Not Found'
