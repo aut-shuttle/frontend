@@ -2211,7 +2211,7 @@ export default class BusSchedulePage extends Component {
             'Current Time：' + this.state.hours + ':' + this.state.minute
           }>
           <select>
-            <option value="" selected disabled hidden>Choose here</option>
+            <option value="" selected disabled hidden>Choose Route</option>
             <option onClick={() => { this.comparenc() }} >Deport North-Arrive City</option>
             <option onClick={() => { this.comparecn() }}>Deport City-Arrive North</option>
             <option onClick={() => { this.comparecs() }}>Deport City-Arrive South</option>
