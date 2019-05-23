@@ -1292,7 +1292,7 @@ export default class BusSchedulePage extends Component {
   }
 
   comparesc(){
-    //
+    //6
     if(this.state.hours==6){
      if(this.state.minute<30){
       this.state.nhours = this.state.hours;
@@ -1360,8 +1360,803 @@ export default class BusSchedulePage extends Component {
       this.state.nnnprice = 3.3;
      }
     }
-    
+    //7
+    else  if(this.state.hours==7){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 1;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 25;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 55;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 25;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 2;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }
+     }
+     //8
+     else  if(this.state.hours==8){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 1;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 25;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 55;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 15;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 15;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 2;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 45;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }
+     }
+    //9
+    else if(this.state.hours==9){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 15;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 45;
+       this.state.annnhours = this.state.hours + 1;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 15;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 45;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 15;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 15;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 2;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 45;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }
+     }
+     //10-12
+     else  if(this.state.hours>=10 &&this.state.hours<=12){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 15;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 45;
+       this.state.annnhours = this.state.hours + 1;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 15;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 45;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 15;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 15;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 2;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 45;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }
+     }
+     //13
+     else  if(this.state.hours==13){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 15;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 45;
+       this.state.annnhours = this.state.hours + 1;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 15;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 45;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 25;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 2;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }
+     }
+     //14
+     else  if(this.state.hours==14){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 1;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 25;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 55;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 25;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 2;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }
+     }
+     //15
+     else  if(this.state.hours==15){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 1;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 25;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 55;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 25;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 2;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }
+     }
+     //16
+     else  if(this.state.hours==16){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 55;
+       this.state.annnhours = this.state.hours + 1;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 25;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 55;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 25;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 40;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 2;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 15;
+       this.state.annnhours = this.state.hours + 3;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }
+     }
+     //17
+     else  if(this.state.hours==17 ){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 55;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours;
+       this.state.nnminute = 45;
+       this.state.annminute = 25;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 40;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 1;
+       this.state.nnnminute = 45;
+       this.state.annnminute = 15;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }else if(this.state.minute>=15 &&this.state.minute<45){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 45;
+       this.state.anminute = 25;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 40;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 45;
+       this.state.annminute = 15;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours +2;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 45;
+       this.state.annnhours = this.state.hours + 2;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+ 
+      }else if(this.state.minute>=45){
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 45;
+       this.state.anminute = 15;
+       this.state.anhours = this.state.hours+2;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+2;
+       this.state.nnminute = 15;
+       this.state.annminute = 45;
+       this.state.annhours = this.state.hours + 2;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = this.state.hours + 3;
+       this.state.nnnminute = 15;
+       this.state.annnminute = 45;
+       this.state.annnhours = this.state.hours + 3;
+       this.state.nnntime = 30;
+       this.state.nnnprice = 3.3;
+      }
+     }
+     //18
+     else  if(this.state.hours==18){
+       if(this.state.minute<45){
+        this.state.nhours = this.state.hours;
+        this.state.nminute = 45;
+        this.state.anminute = 15;
+        this.state.anhours = this.state.hours+1;
+        this.state.ntime = 30;
+        this.state.nprice = 3.3;
+  
+        this.state.nnhours = this.state.hours+1;
+        this.state.nnminute = 15;
+        this.state.annminute = 45;
+        this.state.annhours = this.state.hours + 1;
+        this.state.nntime = 30;
+        this.state.nnprice = 3.3;
+  
+        this.state.nnnhours = this.state.hours + 2;
+        this.state.nnnminute = 15;
+        this.state.annnminute = 45;
+        this.state.annnhours = this.state.hours + 2;
+        this.state.nnntime = 30;
+        this.state.nnnprice = 3.3;
+       }else{
+        this.state.nhours = this.state.hours+1;
+        this.state.nminute = 15;
+        this.state.anminute = 45;
+        this.state.anhours = this.state.hours+1;
+        this.state.ntime = 30;
+        this.state.nprice = 3.3;
+  
+        this.state.nnhours = this.state.hours+2;
+        this.state.nnminute = 15;
+        this.state.annminute = 45;
+        this.state.annhours = this.state.hours + 2;
+        this.state.nntime = 30;
+        this.state.nnprice = 3.3;
+  
+        this.state.nnnhours = '--';
+        this.state.nnnminute = '--';
+        this.state.annnminute = '--';
+        this.state.annnhours = '--';
+        this.state.nnntime = 0;
+        this.state.nnnprice = 0;
+       }
+     }
+     //19
+     else  if(this.state.hours==19){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = this.state.hours+1;
+       this.state.nnminute = 15;
+       this.state.annminute = 45;
+       this.state.annhours = this.state.hours + 1;
+       this.state.nntime = 30;
+       this.state.nnprice = 3.3;
+ 
+       this.state.nnnhours = '--';
+       this.state.nnnminute = '--';
+       this.state.annnminute = '--';
+       this.state.annnhours = '--';
+       this.state.nnntime = 0;
+       this.state.nnnprice = 0;
+      }else{
+       this.state.nhours = this.state.hours+1;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours+1;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = '--';
+       this.state.nnminute = '--';
+       this.state.annminute = '--';
+       this.state.annhours = '--';
+       this.state.nntime = 0;
+       this.state.nnprice = 0;
+ 
+       this.state.nnnhours = '--';
+       this.state.nnnminute = '--';
+       this.state.annnminute = '--';
+       this.state.annnhours = '--';
+       this.state.nnntime = 0;
+       this.state.nnnprice = 0;
+      }
+    }
+    //20
+    else  if(this.state.hours==20){
+      if(this.state.minute<15){
+       this.state.nhours = this.state.hours;
+       this.state.nminute = 15;
+       this.state.anminute = 45;
+       this.state.anhours = this.state.hours;
+       this.state.ntime = 30;
+       this.state.nprice = 3.3;
+ 
+       this.state.nnhours = '--';
+       this.state.nnminute = '--';
+       this.state.annminute = '--';
+       this.state.annhours = '--';
+       this.state.nntime = 0;
+       this.state.nnprice = 0;
+ 
+       this.state.nnnhours = '--';
+       this.state.nnnminute = '--';
+       this.state.annnminute = '--';
+       this.state.annnhours = '--';
+       this.state.nnntime = 0;
+       this.state.nnnprice = 0;
+      }else{
+       this.state.nhours = '--';
+       this.state.nminute = '--';
+       this.state.anminute = '--';
+       this.state.anhours = '--';
+       this.state.ntime = 0;
+       this.state.nprice = 0;
+ 
+       this.state.nnhours = '--';
+       this.state.nnminute = '--';
+       this.state.annminute = '--';
+       this.state.annhours = '--';
+       this.state.nntime = 0;
+       this.state.nnprice = 0;
+ 
+       this.state.nnnhours = '--';
+       this.state.nnnminute = '--';
+       this.state.annnminute = '--';
+       this.state.annnhours = '--';
+       this.state.nnntime = 0;
+       this.state.nnnprice = 0;
+      }
+    }
+    //>20
+    else if (this.state.hours>=0 && this.state.hours<6) {
+      this.state.nhours = '--';
+      this.state.nminute = '--';
+      this.state.anminute = '--';
+      this.state.anhours = '--';
+      this.state.ntime = 0;
+      this.state.nprice = 0;
 
+
+      this.state.nnhours = '--';
+      this.state.nnminute = '--';
+      this.state.annminute = '--';
+      this.state.annhours = '--';
+      this.state.nntime = 0;
+      this.state.nnprice = 0;
+
+      this.state.nnnhours = '--';
+      this.state.nnnminute = '--';
+      this.state.annnminute = '--';
+      this.state.annnhours = '--';
+      this.state.nnntime = 0;
+      this.state.nnnprice = 0;
+    }
+    else if (this.state.hours >= 0 && this.state.hours < 6) {
+      this.state.nhours = '--';
+      this.state.nminute = '--';
+      this.state.anminute = '--';
+      this.state.anhours = '--';
+      this.state.ntime = 0;
+      this.state.nprice = 0;
+
+
+      this.state.nnhours = '--';
+      this.state.nnminute = '--';
+      this.state.annminute = '--';
+      this.state.annhours = '--';
+      this.state.nntime = 0;
+      this.state.nnprice = 0;
+
+      this.state.nnnhours = '--';
+      this.state.nnnminute = '--';
+      this.state.annnminute = '--';
+      this.state.annnhours = '--';
+      this.state.nnntime = 0;
+      this.state.nnnprice = 0;
+    }
 
   }
   render() {
