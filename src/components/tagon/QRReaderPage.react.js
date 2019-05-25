@@ -8,7 +8,7 @@ export default class QRReaderPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			delay: 100,
+			delay: 500,
 			passenger: '',
 			bus: []
 		}
@@ -78,11 +78,9 @@ export default class QRReaderPage extends Component {
 											}
 										}}
 									>
-										{
-											(!this.state.passenger
-												? 'Scan a passenger to add to bus'
-												: 'Add ' + this.state.passenger + ' to the Bus!')
-										}
+										{!this.state.passenger
+											? 'Scan a passenger to add to bus'
+											: 'Add ' + this.state.passenger + ' to the Bus!'}
 									</Button>
 									<Button block color="green" onClick={() => {}}>
 										{'Click here when ready to leave!'}
