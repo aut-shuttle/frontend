@@ -32,8 +32,6 @@ export default class BusDashboard extends Component {
 		console.log(error, info)
 	}
 
-
-
 	render() {
 		return (
 			<SiteWrapper>
@@ -90,36 +88,59 @@ export default class BusDashboard extends Component {
 										]}
 										/>
 									</List.Group>
+
+									
 								</Card>
-								<a>
-									<Grid.Row  md ={6}>
-
-										<Grid.Col>
-											
-											<Card 
-											statusColor = "yellow"
-											title={<h4>Total Journeys Today:</h4>}
-											body ={<center><h1>15</h1></center>}
-											/>
-										</Grid.Col>
-
-										<Grid.Col>
-											<Card
-											statusColor = "green"
-											title={<h4>Fun Fact:</h4>}
-											body={'I have been driving busses for 15 years!'}
-											/>
-										</Grid.Col>
-
-									</Grid.Row>
-								</a>
+								
 							</Grid.Col>
 
-							
-							
+							<Grid.Col md={3} >
+								<a>
+								<Card 
+								statusColor = "yellow"
+								title={<h4>Total Journeys Today:</h4>}
+								body ={<center><h3>15</h3></center>}
+								/>
+								</a>
 
+							</Grid.Col> 
+
+							<Grid.Col md ={3}>
+								<a>
+								<Card
+								statusColor = "green"
+								title={<h4>Fun Fact:</h4>}
+								body={'I have been driving busses for 15 years!'}
+								
+								/>
+								</a>
+							</Grid.Col>
+		
 						</Grid.Row>
+
+						<Grid.Row  md ={6}>
+							<Grid.Col md={4}>
+									<a>
+									<Card
+									statusColor = "orange">
+
+										<Card.Header>
+											<h4>Details</h4>
+										</Card.Header>
+
+										<List.Group>
+											<List.GroupItem>Plate Number: SDP602</List.GroupItem>
+											<List.GroupItem>Registration Expiry: 5 October 2019</List.GroupItem>
+										</List.Group>
+
+									</Card>
+									</a>
+									
+							</Grid.Col>
+						</Grid.Row>
+
 					</Grid.Col>
+
 					<Card.Footer>
 						Safe Travels!
 					</Card.Footer>
