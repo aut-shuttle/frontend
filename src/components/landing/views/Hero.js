@@ -10,6 +10,10 @@ import Button from "../components/Button";
 import Typography from "../components/Typography";
 import HeroLayout from "./HeroLayout";
 import Grid from '@material-ui/core/Grid';
+import { red, blue, green, yellow } from '@material-ui/core/colors'
+
+const blueTheme = createMuiTheme({ palette: { primary: blue } })
+const yellowTheme = createMuiTheme({ palette: { primary: yellow } })
 
 const backgroundImage =
   "https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?ixlib=rb-1.2.1&w=1000&q=80";
@@ -73,7 +77,8 @@ function Hero(props) {
       >
         Sign up or Login Below
       </Typography>
-      
+
+ 
       <Grid container spacing={24}
         direction="row"
         alignItems="center"
@@ -81,6 +86,7 @@ function Hero(props) {
         >
       <Grid item xs={2}
         >
+     <MuiThemeProvider theme={blueTheme}>
       <Button
         color="primary"
         variant="contained"
@@ -96,8 +102,10 @@ function Hero(props) {
       >
         <Typography align="center" color="inherit">Register</Typography>
       </Button>
+      </MuiThemeProvider>
       </Grid>
       <Grid item xs={2}>
+      <MuiThemeProvider theme={yellowTheme}>
       <Button
         color="primary"
         variant="contained"
@@ -113,6 +121,7 @@ function Hero(props) {
       >
         <Typography align="center" color="inherit">Login</Typography>
       </Button>
+      </MuiThemeProvider>
       </Grid>
       </Grid>
 

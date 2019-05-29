@@ -7,6 +7,11 @@ import AppBar from "../components/AppBar";
 import Toolbar, { styles as toolbarStyles } from "../components/Toolbar";
 import Typography from "../components/Typography";
 import Button from '@material-ui/core/Button';
+import BusLogo from './../Images/buslogo'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { red, blue, green, yellow } from '@material-ui/core/colors'
+
+const yellowTheme = createMuiTheme({ palette: { primary: yellow } })
 
 const styles = theme => ({
   root: {
@@ -60,23 +65,38 @@ function AppAppBar(props) {
       <AppBar position="fixed" color="default">
         <Toolbar className={classes.toolbar}>
           <div className={classes.left} />
-          <Typography variant="h5" marked="middle" gutterBottom>
-              AUT Shuttle App Logo
-            </Typography>
+            <img style={{ display: "block", width: "5%", height: "100%"}} src={BusLogo} alt="" />
           <div className={classes.right}>
+
           <Button
             variant="contained"
             className={classes.button}
-            >
+            component={linkProps => (
+              <Link
+                {...linkProps}
+                href="/login"
+                variant="button"
+              />
+            )}  >
             Sign In
             </Button>
+           
+            <MuiThemeProvider theme={yellowTheme}>
             <Button
             variant="contained"
             className={classes.button}
-            color="secondary"
+            color="primary"
+            component={linkProps => (
+              <Link
+                {...linkProps}
+                href="/register"
+                variant="button"
+              />
+            )}
             >
             Sign Up
             </Button>
+            </MuiThemeProvider>
           </div>
         </Toolbar>
       </AppBar>

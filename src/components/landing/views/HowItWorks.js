@@ -6,6 +6,15 @@ import Link from "@material-ui/core/Link";
 import LayoutBody from "../components/LayoutBody";
 import Button from "../components/Button";
 import Typography from "../components/Typography";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { red, blue, green, yellow } from '@material-ui/core/colors'
+import MenuIcon from '@material-ui/icons/Menu'
+import DesktopMac from '@material-ui/icons/DesktopMac'
+import Checkbox from '@material-ui/icons/CheckBox'
+import Money from '@material-ui/icons/Money'
+
+const yellowTheme = createMuiTheme({ palette: { primary: yellow } })
+const blueTheme = createMuiTheme({ palette: { primary: blue } })
 
 const styles = theme => ({
   root: {
@@ -33,7 +42,7 @@ const styles = theme => ({
   number: {
     fontSize: 24,
     fontFamily: theme.typography.fontFamily,
-    color: theme.palette.secondary.main,
+    color: "#fdd835",
     fontWeight: theme.typography.fontWeightMedium
   },
   image: {
@@ -49,7 +58,11 @@ const styles = theme => ({
   },
   button: {
     marginTop: theme.spacing.unit * 8
-  }
+  },
+  largeIcon: {
+    width: 150,
+    height: 100,
+  },
 });
 
 function HowItWorks(props) {
@@ -63,36 +76,33 @@ function HowItWorks(props) {
           className={classes.curvyLines}
           alt="curvy lines"
         />
+     
         <Typography
           variant="h4"
-          marked="center"
           className={classes.title}
           component="h2"
         >
-          How does it work?
+          How Does It Work?
         </Typography>
         <div>
           <Grid container spacing={40}>
             <Grid item xs={12} md={4}>
               <div className={classes.item}>
                 <div className={classes.number}>1.</div>
-                <img
-                  src="https://i.imgur.com/7mDfyYY.png"
-                  alt="suitcase"
-                  className={classes.image}
+                <DesktopMac
+                fontSize="large"
                 />
                 <Typography variant="h5" align="center">
                   Register with your AUT Student Email Address
                 </Typography>
               </div>
+              
             </Grid>
             <Grid item xs={12} md={4}>
               <div className={classes.item}>
                 <div className={classes.number}>2.</div>
-                <img
-                  src="https://i.imgur.com/hcSDoiT.png"
-                  alt="graph"
-                  className={classes.image}
+                <Checkbox
+                fontSize="large"
                 />
                 <Typography variant="h5" align="center">
                   Confirm Your Student Details Are Correct
@@ -102,10 +112,8 @@ function HowItWorks(props) {
             <Grid item xs={12} md={4}>
               <div className={classes.item}>
                 <div className={classes.number}>3.</div>
-                <img
-                  src="https://i.imgur.com/7de6zl8.png"
-                  alt="clock"
-                  className={classes.image}
+                <Money
+                fontSize="large"
                 />
                 <Typography variant="h5" align="center">
                   {"Start Topping Up Your Account"}
@@ -114,6 +122,7 @@ function HowItWorks(props) {
             </Grid>
           </Grid>
         </div>
+        <MuiThemeProvider theme={blueTheme}>
         <Button
           color="primary"
           size="large"
@@ -129,6 +138,7 @@ function HowItWorks(props) {
         >
           Register Now
         </Button>
+        </MuiThemeProvider>
       </LayoutBody>
     </section>
   );

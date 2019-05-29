@@ -12,7 +12,7 @@ import TextField from "../components/TextField";
 const styles = theme => ({
   root: {
     display: "flex",
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: "#FFEB3B"
   },
   layoutBody: {
     marginTop: theme.spacing.unit * 8,
@@ -90,7 +90,7 @@ function AppFooter(props) {
                   />
                 </a>
               </Grid>
-              <Grid item>© 2019 Hamish Maritz Certified Baby</Grid>
+              <Grid item>© 2019 AUT University</Grid>
             </Grid>
           </Grid>
           <Grid item xs={6} sm={4} md={2}>
@@ -99,10 +99,10 @@ function AppFooter(props) {
             </Typography>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="/premium-themes/onepirate/terms">Terminos</Link>
+                <Link href="/premium-themes/onepirate/terms">Terms</Link>
               </li>
               <li className={classes.listItem}>
-                <Link href="/premium-themes/onepirate/privacy">Privacidad</Link>
+                <Link href="/premium-themes/onepirate/privacy">Privacy</Link>
               </li>
             </ul>
           </Grid>
