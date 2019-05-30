@@ -9,7 +9,7 @@ const styles = theme => ({
   root: {
     display: "flex",
     overflow: "hidden",
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: "#FFEB3B"
   },
   layoutBody: {
     marginTop: theme.spacing.unit * 15,
@@ -56,11 +56,11 @@ function Values(props) {
                 src="https://i.imgur.com/Ykh3EnZ.png"
                 alt="suitcase"
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h4" className={classes.title}>
                 A Faster Way To Top Up
               </Typography>
-              <Typography variant="h2">
-                {"Something"}
+              <Typography variant="h5">
+                {"Spend more time doing the things you want, when you want"}
                 {"."}
               </Typography>
             </div>
@@ -72,11 +72,11 @@ function Values(props) {
                 src="https://i.imgur.com/CRTLLGN.png"
                 alt="graph"
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h4" className={classes.title}>
                 Live Updates
               </Typography>
-              <Typography variant="h6">
-                {"Crazy"}
+              <Typography variant="h5">
+                {"Get up to date information regarding scheduling and timetables."}
                 {""}
               </Typography>
             </div>
@@ -88,11 +88,11 @@ function Values(props) {
                 src="https://i.imgur.com/YXGKiho.png"
                 alt="clock"
               />
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h4" className={classes.title}>
                 Ticket History
               </Typography>
               <Typography variant="h5">
-                {"Ok"}
+                {"View all your previous transactions at anytime"}
                 {"."}
               </Typography>
             </div>
