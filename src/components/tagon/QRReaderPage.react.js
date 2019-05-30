@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
-import { Page, Grid, Card, Button } from 'tabler-react'
+import { Page, Grid, Card, Button, Alert } from 'tabler-react'
 import SiteWrapper from '../../SiteWrapper.react'
 import QrReader from 'react-qr-reader'
 
@@ -8,6 +8,7 @@ export default class QRReaderPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			tagonmessage: '',
 			delay: 500,
 			passenger: '',
 			bus: []
@@ -16,19 +17,30 @@ export default class QRReaderPage extends Component {
 		this.handleScan = this.handleScan.bind(this)
 	}
 
-	addPassengerToBus = () => {
-		this.setState(state => {
-			const bus = state.bus.concat(state.passenger)
+	boardBus() {
+		console.log(this.state.bus)
+	}
 
-			return {
-				bus,
-				passenger: ''
-			}
-		})
+	addPassengerToBus = () => {
+		var singleUser = this.state.passenger.split(',')
+
+		if (singleUser[2] < 6.0) {
+			this.setState({ tagonmessage: 'Balance Low, Passenger not added!' })
+		} else {
+			this.state.tagonmessage =
+				singleUser[0] + '  ' + singleUser[1] + ' tagged on successfully'
+			this.setState(state => {
+				const bus = state.bus.concat(state.passenger)
+
+				return {
+					bus,
+					passenger: ''
+				}
+			})
+		}
 	}
 
 	handleScan(data) {
-		console.log(this.state.bus)
 		if (data !== null) {
 			this.setState({
 				passenger: data
@@ -67,6 +79,7 @@ export default class QRReaderPage extends Component {
 									</Grid.Col>
 								</Grid.Row>
 								<Button.List>
+									<Alert type="info">{this.state.tagonmessage}</Alert>
 									<Button
 										block
 										color="yellow"
@@ -80,9 +93,19 @@ export default class QRReaderPage extends Component {
 									>
 										{!this.state.passenger
 											? 'Scan a passenger to add to bus'
-											: 'Add ' + this.state.passenger + ' to the Bus!'}
+											: 'Add ' +
+											  this.state.passenger.split(',')[0] +
+											  ' ' +
+											  this.state.passenger.split(',')[1] +
+											  ' to the Bus!'}
 									</Button>
-									<Button block color="green" onClick={() => {}}>
+									<Button
+										block
+										color="green"
+										onClick={() => {
+											this.boardBus()
+										}}
+									>
 										{'Click here when ready to leave!'}
 									</Button>
 									<Button

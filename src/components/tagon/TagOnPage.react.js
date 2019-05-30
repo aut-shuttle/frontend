@@ -52,11 +52,11 @@ export default class TagOnPage extends Component {
 															!this.state.isFetching
 																? 'Loading....'
 																: this.state.user.first_name +
-																  ' ' +
+																  ',' +
 																  this.state.user.last_name +
-																  ' balance: $' +
+																  ',' +
 																  this.state.user.balance +
-																  ' id:' +
+																  ',' +
 																  this.state.user.id
 														}
 													/>
