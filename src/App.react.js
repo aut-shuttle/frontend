@@ -20,6 +20,7 @@ function App() {
 			<Router>
 				<Switch>
 					<Route exact path="/" component={LandingPage} />
+					<Route exact path="/home" component={HomePage} />
 					<Route exact path="/register" component={RegisterPage} />
 					<Route exact path="/login" component={LoginPage} />
 					<Route exact path="/profile" component={ViewProfilePage} />
@@ -28,7 +29,7 @@ function App() {
 					<Route exact path="/topup" component={TopUpPage} />
 					<Route exact path="/logout" component={LogoutPage} />
 					<Route exact path="/tagon" component={TagOnPage} />
-					<Route path="/verify/:id" component={ConfirmEmail}/>
+					<Route path="/verify/:id" component={ConfirmEmail} />
 				</Switch>
 			</Router>
 		</React.StrictMode>
