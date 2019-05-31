@@ -126,7 +126,7 @@ export default class QRReaderPage extends Component {
 										block
 										color="blue"
 										onClick={() => {
-											this.props.history.push('/home')
+											this.props.history.push('/')
 										}}
 									>
 										Back to Home
