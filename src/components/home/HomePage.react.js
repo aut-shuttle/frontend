@@ -68,10 +68,9 @@ export default class LoginPage extends Component {
 									<Card.Body>
 										<h1>
 											<center>
-												
 												{!this.state.isFetching
 													? 'Loading....'
-													: "$" + this.state.user.balance}
+													: '$' + this.state.user.balance}
 											</center>
 										</h1>
 									</Card.Body>
