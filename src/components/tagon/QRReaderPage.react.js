@@ -19,24 +19,38 @@ export default class QRReaderPage extends Component {
 
 	boardBus() {
 		console.log(this.state.bus)
+		if (this.state.bus.length > 0) {
+			this.setState({ tagonmessage: 'Bus Trip Started!!' })
+			//submit list to API
+			//redirect to somewhere else
+		} else {
+			this.setState({ tagonmessage: 'Tag on people before first!' })
+		}
 	}
 
 	addPassengerToBus = () => {
-		var singleUser = this.state.passenger.split(',')
-
-		if (singleUser[2] < 6.0) {
-			this.setState({ tagonmessage: 'Balance Low, Passenger not added!' })
+		if (!this.state.passenger) {
+			this.setState({ tagonmessage: 'Scan QR Code First!' })
 		} else {
-			this.state.tagonmessage =
-				singleUser[0] + '  ' + singleUser[1] + ' tagged on successfully'
-			this.setState(state => {
-				const bus = state.bus.concat(state.passenger)
+			var singleUser = this.state.passenger.split(',')
+			if (singleUser.length == 4) {
+				if (singleUser[2] < 6.0) {
+					this.setState({ tagonmessage: 'Balance Low, Passenger not added!' })
+				} else {
+					this.state.tagonmessage =
+						singleUser[0] + '  ' + singleUser[1] + ' tagged on successfully'
+					this.setState(state => {
+						const bus = state.bus.concat(state.passenger)
 
-				return {
-					bus,
-					passenger: ''
+						return {
+							bus,
+							passenger: ''
+						}
+					})
 				}
-			})
+			} else {
+				this.setState({ tagonmessage: 'Invalid QR Code Scanned' })
+			}
 		}
 	}
 
@@ -112,7 +126,7 @@ export default class QRReaderPage extends Component {
 										block
 										color="blue"
 										onClick={() => {
-											this.props.history.push('/')
+											this.props.history.push('/home')
 										}}
 									>
 										Back to Home
