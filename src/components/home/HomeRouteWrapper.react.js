@@ -6,7 +6,11 @@ class HomeRouteWrapper extends Component {
 	render() {
 		return (
 			<Fragment>
-				{localStorage.getItem('token') ? <HomePage /> : <Landing />}
+				{localStorage.getItem('token') ? (
+					<HomePage history={this.props.history} />
+				) : (
+					<Landing history={this.props.history} />
+				)}
 			</Fragment>
 		)
 	}
