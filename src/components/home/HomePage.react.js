@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import API from '../../utils/API'
 import { Page, Grid, Card, Icon, Alert } from 'tabler-react'
 import SiteWrapper from '../../SiteWrapper.react'
+import QRCode from 'qrcode.react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
@@ -93,30 +94,45 @@ export default class LoginPage extends Component {
 											<Card.Title>Top Up Account</Card.Title>
 										</Card.Header>
 										<Card.Body>
-											{<center>Click here to Top Up your account</center>}
+											{<center><h1>Click here to Top Up</h1></center>}
 										</Card.Body>
+										<Card.Footer>
+											<Icon prefix="fe" name="info" />
+										</Card.Footer>
 									</Card>
 								</a>
 							</Grid.Col>
 						</Grid.Row>
 						<Grid.Row>
 							<Grid.Col md={12}>
-								<a
-									style={{ cursor: 'pointer' }}
-									onClick={() => {
-										this.props.history.push('/tagon')
-									}}
-								>
-									<Card>
-										<Card.Status color="blue" />
-										<Card.Header>
-											<Card.Title>Tag On!</Card.Title>
-										</Card.Header>
-										<Card.Body>
-											{<center>Click here to Tag On!</center>}
-										</Card.Body>
-									</Card>
-								</a>
+								<Card>
+									<Card.Status color="blue" />
+									<Card.Header>
+										<Card.Title>Tag On!</Card.Title>
+									</Card.Header>
+									<Card.Body>
+										{
+											<center>
+												<QRCode
+													value={
+														!this.state.isFetching
+															? 'Loading....'
+															: this.state.user.first_name +
+															  ',' +
+															  this.state.user.last_name +
+															  ',' +
+															  this.state.user.balance +
+															  ',' +
+															  this.state.user.id
+													}
+												/>
+											</center>
+										}
+									</Card.Body>
+									<Card.Footer>
+										<Icon prefix="fe" name="info" /> Scan this Code to Tag On!
+									</Card.Footer>
+								</Card>
 							</Grid.Col>
 						</Grid.Row>
 					</Grid.Col>
