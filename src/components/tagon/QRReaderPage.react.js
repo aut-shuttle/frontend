@@ -21,8 +21,17 @@ export default class QRReaderPage extends Component {
 		console.log(this.state.bus)
 		if (this.state.bus.length > 0) {
 			this.setState({ tagonmessage: 'Bus Trip Started!!' })
-			//submit list to API
-			//redirect to somewhere else
+			for (var person of this.state.bus) {
+				var singleUser = person.split(',')
+				var boardUser = {
+					user_id: singleUser[3],
+					trip_id: 1,
+					timestamp: new Date()
+				}
+				API.post('/boarding', boardUser).then(result => {
+					console.log(result)
+				})
+			}
 		} else {
 			this.setState({ tagonmessage: 'Tag on people before first!' })
 		}
