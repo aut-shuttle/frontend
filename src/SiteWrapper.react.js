@@ -17,7 +17,7 @@ const navBarItems = [
 		to: '/topup',
 		LinkComponent: withRouter(NavLink)
 	},
-	
+
 	{
 		value: 'Profile',
 		icon: 'user',
@@ -38,7 +38,6 @@ const navBarItems = [
 				LinkComponent: withRouter(NavLink)
 			}
 		]
-
 	},
 	{
 		value: 'Bus Schedule',
