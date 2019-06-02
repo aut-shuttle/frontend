@@ -35,6 +35,10 @@ export default class LoginPage extends Component {
 			errors.email = 'Not a valid AUT Email Address'
 		}
 
+		if (values.password != values.verifypassword) {
+			errors.password = 'Passwords entered must match'
+		}
+
 		return errors
 	}
 
@@ -143,24 +147,6 @@ export default class LoginPage extends Component {
 										<div style={{ color: 'red' }}>{props.errors.email}</div>
 									)}
 									<TablerForm.Input
-										name="studentid"
-										type="text"
-										label="Student ID"
-										placeholder="Enter Student ID"
-										value={props.values.studentid}
-										onChange={props.handleChange}
-										onBlur={props.handleBlur}
-										style={{
-											borderColor:
-												props.errors.studentid &&
-												props.touched.studentid &&
-												'red'
-										}}
-									/>
-									{props.errors.studentid && props.touched.studentid && (
-										<div style={{ color: 'red' }}>{props.errors.studentid}</div>
-									)}
-									<TablerForm.Input
 										name="password"
 										type="password"
 										label="Password"
@@ -176,6 +162,27 @@ export default class LoginPage extends Component {
 									{props.errors.password && props.touched.password && (
 										<div style={{ color: 'red' }}>{props.errors.password}</div>
 									)}
+									<TablerForm.Input
+										name="verifypassword"
+										type="password"
+										label="Verify Password"
+										placeholder="Verify Password"
+										value={props.values.verifypassword}
+										onChange={props.handleChange}
+										onBlur={props.handleBlur}
+										style={{
+											borderColor:
+												props.errors.verifypassword &&
+												props.touched.verifypassword &&
+												'red'
+										}}
+									/>
+									{props.errors.verifypassword &&
+										props.touched.verifypassword && (
+											<div style={{ color: 'red' }}>
+												{props.errors.verifypassword}
+											</div>
+										)}
 									&nbsp;
 									<Button
 										block
