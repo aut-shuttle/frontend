@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import { Formik, Form } from 'formik'
 import API from '../../utils/API'
-import {
-	Page,
-	Grid,
-	Alert,
-	Form as TablerForm,
-	Button
-} from 'tabler-react'
+import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
@@ -27,9 +21,17 @@ export default class LoginPage extends Component {
 		if (!values.email) errors.email = 'Required'
 		if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
 			errors.email = 'You must supply a valid email address'
-		} 
-		if( (values.email.split('@').slice(1).indexOf('autuni.ac.nz') === -1) && (values.email.split('@').slice(1).indexOf('aut.ac.nz') === -1)) 
-		{
+		}
+		if (
+			values.email
+				.split('@')
+				.slice(1)
+				.indexOf('autuni.ac.nz') === -1 &&
+			values.email
+				.split('@')
+				.slice(1)
+				.indexOf('aut.ac.nz') === -1
+		) {
 			errors.email = 'Not a valid AUT Email Address'
 		}
 
