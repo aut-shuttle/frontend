@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import API from './utils/API'
 import { Site, RouterContextProvider } from 'tabler-react'
+import {Button} from 'tabler-react'
 
 const navBarItems = [
 	{
@@ -87,11 +88,19 @@ class SiteWrapper extends Component {
 	render() {
 		const getUserDescription = () => {
 			if (this.state.user.role.id === 1) {
+			
 				return 'Shuttle Admin'
 			} else if (this.state.user.role.id === 2) {
 				navBarItems.push({
 					value: 'Scanner',
 					to: '/QRReader',
+					icon: 'file',
+					LinkComponent: withRouter(NavLink)
+				})
+				// NEED TO MOVE THIS TO ROLE 1
+				navBarItems.push({
+					value: 'Admin Dashboard',
+					to: '/admin',
 					icon: 'file',
 					LinkComponent: withRouter(NavLink)
 				})
@@ -135,6 +144,7 @@ class SiteWrapper extends Component {
 			>
 				{this.props.children}
 			</Site.Wrapper>
+			
 		)
 	}
 }

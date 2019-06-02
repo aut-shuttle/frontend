@@ -3,14 +3,17 @@ import API from '../../utils/API'
 import { Page, Grid, Card, Icon, Alert } from 'tabler-react'
 import SiteWrapper from '../../SiteWrapper.react'
 import QRCode from 'qrcode.react'
+import {Button} from 'tabler-react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			user: { first_name: '', balance: '' }
+			user: { first_name: '', balance: ''},
+			showMe: false
 		}
 	}
+
 
 	componentDidMount() {
 		if (localStorage.getItem('token')) {
@@ -29,6 +32,12 @@ export default class LoginPage extends Component {
 	}
 	componentDidCatch(error, info) {
 		console.log(error, info)
+	}
+
+	toggle = () =>{
+		this.setState({
+			showMe:true
+		})
 	}
 
 	render() {
@@ -58,7 +67,7 @@ export default class LoginPage extends Component {
 								Hi {this.state.user.first_name}, looks like you are new around
 								here. Please verify your email using the link we sent you.
 							</Alert>
-						)}
+						)}	
 						<Grid.Row cards deck>
 							<Grid.Col md={6}>
 								<Card>
