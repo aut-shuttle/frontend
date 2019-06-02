@@ -97,6 +97,12 @@ class SiteWrapper extends Component {
 			if (this.state.user.role.id === 1) {
 				return 'Shuttle Admin'
 			} else if (this.state.user.role.id === 2) {
+				navBarItems.push({
+					value: 'Scanner',
+					to: '/QRReader',
+					icon: 'file',
+					LinkComponent: withRouter(NavLink)
+				})
 				return 'Shuttle Driver'
 			} else if (this.state.user.role.id === 3) {
 				return 'Shuttle Passenger'

@@ -31,6 +31,7 @@
     "react-dropdown": "^1.6.4",
     "react-google-maps": "^9.4.5",
     "react-paypal-express-checkout": "^1.0.5",
+    "react-qr-reader": "^2.2.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-simple-maps": "^0.12.1",

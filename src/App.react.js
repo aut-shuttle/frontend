@@ -13,6 +13,7 @@ import LogoutPage from './components/profile/LogoutPage.react'
 import TagOnPage from './components/tagon/TagOnPage.react'
 import BusSchedulePage from './components/busschedule/BusSchedulePage.react'
 import ConfirmEmail from './components/register/ConfirmEmail.react'
+import QRReaderPage from './components/tagon/QRReaderPage.react'
 
 function App() {
 	return (
@@ -29,7 +30,8 @@ function App() {
 					<Route exact path="/logout" component={LogoutPage} />
 					<Route exact path="/tagon" component={TagOnPage} />
 					<Route exact path="/busschedule" component={BusSchedulePage} />
-					<Route path="/verify/:id" component={ConfirmEmail}/>
+					<Route path="/verify/:id" component={ConfirmEmail} />
+					<Route exact path="/qrreader" component={QRReaderPage} />
 				</Switch>
 			</Router>
 		</React.StrictMode>
