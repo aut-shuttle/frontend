@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Card, Grid, Table, Dimmer } from 'tabler-react'
+import { Card, Grid, Page, Table, Dimmer } from 'tabler-react'
 import SiteWrapper from '../../SiteWrapper.react'
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
@@ -93,7 +93,7 @@ export default class BusSchedulePage extends Component {
 					{trips.length < 1 ? (
 						<p>We were unable to retrieve trips from the server.</p>
 					) : (
-						<Table>
+						<Table responsive>
 							<Table.Header>
 								<Table.ColHeader>Name</Table.ColHeader>
 								<Table.ColHeader>From</Table.ColHeader>
@@ -137,25 +137,46 @@ export default class BusSchedulePage extends Component {
 			)
 		}
 
-		return (
-			<SiteWrapper>
-				<Grid.Col md={6}>
-					<Card statusColor="purple">
-						<Card.Header>
-							<Card.Title>Bus Schedule</Card.Title>
-							<Card.Options>
-								<Dropdown
-									options={this.state.routes}
-									onChange={this.onRouteSelect}
-									value={this.state.routes[0]}
-									placeholder="Select a Route"
-								/>
-							</Card.Options>
-						</Card.Header>
-						<Card.Body>{busTimeTable(this.state.filteredTrips)}</Card.Body>
-					</Card>
-				</Grid.Col>
-			</SiteWrapper>
-		)
+		if (!this.props.mini) {
+			return (
+				<SiteWrapper>
+					<Page.Content>
+						<Grid.Col md={12}>
+							<Card statusColor="purple">
+								<Card.Header>
+									<Card.Title>Bus Schedule</Card.Title>
+									<Card.Options>
+										<Dropdown
+											options={this.state.routes}
+											onChange={this.onRouteSelect}
+											value={this.state.routes[0]}
+											placeholder="Select a Route"
+										/>
+									</Card.Options>
+								</Card.Header>
+								<Card.Body>{busTimeTable(this.state.filteredTrips)}</Card.Body>
+							</Card>
+						</Grid.Col>
+					</Page.Content>
+				</SiteWrapper>
+			)
+		} else {
+			return (
+				<Card statusColor="purple">
+					<Card.Header>
+						<Card.Title>Bus Schedule</Card.Title>
+						<Card.Options>
+							<Dropdown
+								options={this.state.routes}
+								onChange={this.onRouteSelect}
+								value={this.state.routes[0]}
+								placeholder="Select a Route"
+							/>
+						</Card.Options>
+					</Card.Header>
+					<Card.Body>{busTimeTable(this.state.filteredTrips)}</Card.Body>
+				</Card>
+			)
+		}
 	}
 }

@@ -42,7 +42,7 @@ const navBarItems = [
 	},
 	{
 		value: 'Bus Schedule',
-	
+		icon: 'align-justify',
 		to: '/busschedule',
 		LinkComponent: withRouter(NavLink)
 	},
@@ -100,7 +100,7 @@ class SiteWrapper extends Component {
 				navBarItems.push({
 					value: 'Scanner',
 					to: '/QRReader',
-					icon: 'file',
+					icon: 'maximize',
 					LinkComponent: withRouter(NavLink)
 				})
 				return 'Shuttle Driver'
