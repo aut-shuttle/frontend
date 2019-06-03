@@ -65,8 +65,6 @@ export default class TopUpPage extends Component {
 
 		const onCancel = data => console.log('Cancelled payment!', data)
 
-		const validTopupAmounts = [5, 10, 20, 50]
-
 		const client = {
 			sandbox:
 				'AYCKfuONytEMj8apXJCgd-rGgBHBZdrak8wQ_ACZ3XFfbIYzEY0lAQ67a11crVQozXS3XL2PY3SdLW0k',
