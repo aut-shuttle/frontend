@@ -88,19 +88,17 @@ class SiteWrapper extends Component {
 	render() {
 		const getUserDescription = () => {
 			if (this.state.user.role.id === 1) {
-			
+				navBarItems.push({
+					value: 'Admin Dashboard',
+					to: '/admin',
+					icon: 'file',
+					LinkComponent: withRouter(NavLink)
+				})
 				return 'Shuttle Admin'
 			} else if (this.state.user.role.id === 2) {
 				navBarItems.push({
 					value: 'Scanner',
 					to: '/QRReader',
-					icon: 'file',
-					LinkComponent: withRouter(NavLink)
-				})
-				// NEED TO MOVE THIS TO ROLE 1
-				navBarItems.push({
-					value: 'Admin Dashboard',
-					to: '/admin',
 					icon: 'file',
 					LinkComponent: withRouter(NavLink)
 				})

@@ -1,20 +1,82 @@
 import React, { Component } from 'react'
-import API from '../../utils/API'
-import { Page, Grid, Card, Button, Alert } from 'tabler-react'
+import { Page, Grid, Card, Button, Alert, colors } from 'tabler-react'
 import SiteWrapper from '../../SiteWrapper.react'
 import QrReader from 'react-qr-reader'
 import * as V from 'victory';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip,
 VictoryPie, VictoryArea, VictoryClipContainer, VictoryLabel, VictoryScatter,
 VictoryLine } from 'victory';
+import C3Chart from "react-c3js";
+import API from '../../utils/API'
 
 const data = [
-    {quarter: 1, earnings: 13000},
-    {quarter: 2, earnings: 16500},
-    {quarter: 3, earnings: 14250},
-    {quarter: 4, earnings: 19000}
+    {quarter: 20, earnings: 13000},
+    {quarter: 40, earnings: 16500},
+    {quarter: 60, earnings: 14250},
+    {quarter: 80, earnings: 19000}
   ];
 
+  const cards = [
+    {
+      title: "Top Up Amounts",
+      data: {
+        columns: [
+// each columns data
+          ["data1", 2, 8, 6, 7, 14, 11, 8],
+          ["data2", 12, 22, 31, 25, 16, 25, 30],
+        ],
+        type: "line", // default type of chart
+        colors: {
+          data1: colors.orange,
+          data2: colors.blue,
+          data3: colors.green,
+        },
+        names: {
+// name of each serie
+          data1: "AUT Staff",
+          data2: "AUT Students",
+        },
+      },
+      axis: {
+        x: {
+          type: "category",
+// name of each category
+          categories: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
+        },
+      },
+    },
+  ];
+
+  const pieData = [
+    {
+      title: "Website Usage This Week",
+      data: {
+        columns: [
+          // each columns data
+          ["data1", 63],
+          ["data2", 44],
+          ["data3", 12],
+          ["data4", 14],
+        ],
+        type: "pie", // default type of chart
+        colors: {
+          data1: colors["blue-darker"],
+          data2: colors["blue"],
+          data3: colors["blue-light"],
+          data4: colors["blue-lighter"],
+        },
+        names: {
+          // name of each serie
+          data1: "AUT Students",
+          data2: "Drivers",
+          data3: "Admin",
+          data4: "Staff",
+        },
+      },
+      axis: {},
+    },
+  ];
+ 
   
 
 export default class QRReaderPage extends Component {
@@ -25,12 +87,27 @@ export default class QRReaderPage extends Component {
 			delay: 500,
 			passenger: '',
             bus: [],
+     user: { first_name: '', balance: ''},
+      
 		}
     }
-    
 
+    componentDidMount() {
+      if (localStorage.getItem('token')) {
+        API.get('/profile/')
+          .then(res => {
+            this.setState({ isFetching: true })
+            this.setState({ user: res.data })
+          })
+          .then(this.setState({ isFetching: false }))
+          .catch(err => {
+            console.log(err)
+          })
+      } else {
+        
+      }
+    }
     
-
 
 	handleError(err) {
 		console.error(err)
@@ -47,22 +124,128 @@ export default class QRReaderPage extends Component {
 		return (
 			<SiteWrapper>
 				<Page.Content>
-                    <Grid.Row>
-                    <Grid.Col width={50}>
-                    <Grid.Col md={100} lg={50}>
-                <Card>Admin Dashboard WIP</Card>
+              <Grid.Row>
+              <Grid.Col width={50}>
+              <Grid.Col md={100} lg={50}>
+                <Card>
+                <Card.Header>
+                 <Card.Title>Admin Analytic Dashboard</Card.Title>
+                 </Card.Header>
+                 <Card.Body>
+                   <h3>Welcome {this.state.user.first_name}.</h3> This is your Admin Dashboard. 
+                   View the latest analytical data and up to date information.
+                 </Card.Body>
+                </Card>
                 </Grid.Col>
                 </Grid.Col>
                 </Grid.Row>
-					<Grid.Row>
-						<Grid.Col width={20}>
-							<Grid.Col md={10} lg={6}>
-								<Grid.Row cards deck>
-									<Grid.Col md={20}>
-										<Card
-											body={
-												<center>
-                                                    <VictoryChart
+                                      <Grid.Row>
+                                        <Grid.Col width={50}>
+                                          <Grid.Col md={100} lg={50}>
+                                            <Grid.Row cards deck>
+                                              <Grid.Col md={20}>
+					
+                  
+                                            <Grid.Row cards deck>
+                                            <Grid.Col md={6}>
+                                            <Card>
+                                            <Card.Header>
+                                            <Card.Title>Trips Taken This Week</Card.Title>
+                                          </Card.Header>
+                                            <Card.Body>
+                                            <VictoryChart
+                                                theme={VictoryTheme.material}
+                                                >
+                                                <VictoryLine
+                                                    style={{
+                                                    data: { stroke: "#c43a31" },
+                                                    parent: { border: "1px solid #ccc"}
+                                                    }}
+                                                    animate={{
+                                                        duration: 5000,
+                                                        onLoad: { duration: 5000 }
+                                                      }}
+                                                    data={[
+                                                    { x: 1, y: 2 },
+                                                    { x: 2, y: 3 },
+                                                    { x: 3, y: 5 },
+                                                    { x: 4, y: 4 },
+                                                    { x: 5, y: 7 }
+                                                    ]}
+                                                />
+                                                </VictoryChart>
+                                              </Card.Body>
+                                              </Card>
+                                              </Grid.Col>
+                                              <Grid.Col md={6}>
+                                              <Card>
+                                              <Card.Header>
+                                            <Card.Title>Total Passenger Count</Card.Title>
+                                            </Card.Header>
+                                                <Card.Body>
+                                                <VictoryChart>
+                                            <VictoryArea
+                                             animate={{
+                                                duration: 2000,
+                                                onLoad: { duration: 3000 }
+                                              }}
+                                              theme={VictoryTheme.material}
+                                              groupComponent={<VictoryClipContainer clipPadding={{ top: 5, right: 10 }}/>}
+                                              style={{ data: { stroke: "#c43a31", strokeWidth: 15, strokeLinecap: "round" } }}
+                                              colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
+                                                data={[
+                                                { x: 1, y: 2, y0: 0 },
+                                                { x: 2, y: 3, y0: 1 },
+                                                { x: 3, y: 5, y0: 1 },
+                                                { x: 4, y: 4, y0: 2 },
+                                                { x: 5, y: 6, y0: 2 }
+                                                ]}
+                                                labels={(datum) => datum.y}
+                                                labelComponent={<VictoryLabel renderInPortal dy={-20}/>}
+                                            />
+                                            </VictoryChart>
+                                                </Card.Body>
+                                                </Card>
+                                              </Grid.Col>
+
+
+                                            
+
+
+
+                                            </Grid.Row>
+                                            
+                                            <Grid.Row cards deck>
+                                            {cards.map((chart, i) => (
+                                            <Grid.Col key={i} md={12}>
+                                            <Card title={chart.title}>
+                                        
+                                            <Card.Body>
+                                              <C3Chart
+                                              data={chart.data}
+                                              axis={chart.axis}
+                                              legend={{
+                                                show: false, //hide legend
+                                              }}
+                                              padding={{
+                                                bottom: 0,
+                                                top: 0,
+                                              }}
+                                              />
+
+                                              </Card.Body>
+                                              </Card>
+                                              </Grid.Col>
+                                              ))}
+
+                                              
+                                              <Grid.Col md={6} >
+                                              <Card>
+                                              <Card.Header>
+                                            <Card.Title>In Depth Total Passenger Count</Card.Title>
+                                            </Card.Header>
+                                                <Card.Body>
+                                                <VictoryChart
                                                     animate={{duration: 700}}
                                                     domainPadding={20}
                                                     theme={VictoryTheme.material}	
@@ -72,16 +255,16 @@ export default class QRReaderPage extends Component {
                                                     />
                                                     <VictoryAxis
                                                     dependentAxis              
-                                                    tickFormat={(x) => (`${x / 100}`)}
+                
                                                     />
                                               <VictoryBar 
                                                 labelComponent={<VictoryTooltip/>}
                                                 data={[
-                                                    {x: 2, y: 5, label: "Monday"},
-                                                    {x: 4, y: -6, label: "Tuesday"},
+                                                    {x: 2, y: 7, label: "Monday"},
+                                                    {x: 4, y: 12, label: "Tuesday"},
                                                     {x: 6, y: 4, label: "Wednesday"},
-                                                    {x: 8, y: -5, label: "Thursday"},
-                                                    {x: 10, y: 7, label: "Friday"}
+                                                    {x: 8, y: 6, label: "Thursday"},
+                                                    {x: 10, y: 8, label: "Friday"}
                                                   ]}
                                                   style={{
                                                     data: {fill: "tomato", width: 20}
@@ -116,136 +299,44 @@ export default class QRReaderPage extends Component {
                                                 />
               
                                                </VictoryChart>
+                                                </Card.Body>
+                                                </Card>
+                                                
+                                              </Grid.Col>
+                                              
+                                              {pieData.map((chart, i) => (
+                                            <Grid.Col key={i} md={6}>
+                                            <Card title={chart.title}>
+                
+                                            <Card.Body>
+                                              <C3Chart
+                                              data={chart.data}
+                                              axis={chart.axis}
+                                              legend={{
+                                                show: false, //hide legend
+                                              }}
+                                              padding={{
+                                                bottom: 0,
+                                                top: 0,
+                                              }}
+                                              />
 
-												</center>     
-                                            }/>
-                                            <Card>
-                                            <VictoryPie
-                                            animate={{
-                                                duration: 2000
-                                              }}
-                                              colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
-                                              innerRadius={10}
-                                              labelRadius={90}
-                                              padAngle={3}
-                                            theme={VictoryTheme.material}
-                                            style={{ labels: { fill: "white", fontSize: 10, fontWeight: "bold" } }}
-                                            	
-                                            data={[
-                                                { x: "Scan On", y: 35 },
-                                                { x: "Scan Off", y: 40 },
-                                                { x: "Ticket", y: 55 }
-                                            ]}
-                                            />
-                                            </Card>
-                                            <Card>
-                                            <VictoryChart
-                                            >
-                                            <VictoryArea
-                                             animate={{
-                                                duration: 2000
-                                              }}
-                                              theme={VictoryTheme.material}
-                                              groupComponent={<VictoryClipContainer clipPadding={{ top: 5, right: 10 }}/>}
-                                              style={{ data: { stroke: "#c43a31", strokeWidth: 15, strokeLinecap: "round" } }}
-                                              colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
-                                                data={[
-                                                { x: 1, y: 2, y0: 0 },
-                                                { x: 2, y: 3, y0: 1 },
-                                                { x: 3, y: 5, y0: 1 },
-                                                { x: 4, y: 4, y0: 2 },
-                                                { x: 5, y: 6, y0: 2 }
-                                                ]}
-                                                labels={(datum) => datum.y}
-                                                labelComponent={<VictoryLabel renderInPortal dy={-20}/>}
-                                            />
-                                            </VictoryChart>
-                                            </Card>
-                                            <Card>
+                                              </Card.Body>
+                                              </Card>
+                                              </Grid.Col>
+                                              ))}
+
+                                              
+
+
+                                            </Grid.Row>
                                             
-
-                                            <VictoryChart maxDomain={8}
-                                              animate={{
-                                                duration: 2000,
-                                                onLoad: { duration: 1000 }
-                                              }}>
-                                           <VictoryScatter
-                                            labelComponent={<VictoryTooltip/>}
-                                            groupComponent={<VictoryClipContainer/>}
-                                            bubbleProperty="amount"
-                                            maxBubbleSize={25}
-                                            minBubbleSize={5}
-                                            style={{ labels: { fill: "white", fontSize: 13},
-                                            data: { fill: "#c43a31" } }}
-                                            labels={(datum) => datum.y}
-                                            labelComponent={<VictoryLabel dy={18}/>}
-                                            data={[
-                                                { x: 1, y: 2, amount: 30, labelTwo: "Test" },
-                                                { x: 2, y: 3, amount: 40, labelTwo: "Test" },
-                                                { x: 3, y: 5, amount: 25, labelTwo: "Test" },
-                                                { x: 4, y: 4, amount: 10, labelTwo: "Test" },
-                                                { x: 5, y: 7, amount: 45, labelTwo: "Test" }
-                                            ]}
-                                            events={[{
-                                                target: "data",
-                                                eventHandlers: {
-                                                  onMouseOver: () => {
-                                                    return [
-                                                        {
-                                                            target: "data",
-                                                            mutation: () => ({style: {fill: "cyan", width: 25}})
-                                                          },
-                                                    {
-                                                        target: "labelTwo",
-                                                        mutation: () => ({ active: true })
-                                                      }
-                                                    ];
-                                                  },
-                                                  onMouseOut: () => {
-                                                    return [
-                                                        {
-                                                            target: "data",
-                                                            mutation: () => ({style: {fill: "cyan", width: 25}})
-                                                          },
-                                                   {
-                                                        target: "labelTwo",
-                                                        mutation: () => ({ active: false })
-                                                      }
-                                                    ];
-                                                  }
-                                                }
-                                              }]}
-                                            />
-                                            </VictoryChart>
-                                            </Card>
-                                            <Card>
-                                            <VictoryChart
-                                                theme={VictoryTheme.material}
-                                                >
-                                                <VictoryLine
-                                                    style={{
-                                                    data: { stroke: "#c43a31" },
-                                                    parent: { border: "1px solid #ccc"}
-                                                    }}
-                                                    animate={{
-                                                        duration: 5000,
-                                                        onLoad: { duration: 5000 }
-                                                      }}
-                                                    data={[
-                                                    { x: 1, y: 2 },
-                                                    { x: 2, y: 3 },
-                                                    { x: 3, y: 5 },
-                                                    { x: 4, y: 4 },
-                                                    { x: 5, y: 7 }
-                                                    ]}
-                                                />
-                                                </VictoryChart>
-                                            </Card>
 									</Grid.Col>
 								</Grid.Row>    
 							</Grid.Col>
 						</Grid.Col>
 					</Grid.Row>
+          
 				</Page.Content>
 			</SiteWrapper>
 		)
