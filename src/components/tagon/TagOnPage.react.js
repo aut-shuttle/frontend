@@ -8,6 +8,7 @@ export default class TagOnPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			isFetching: true,
 			user: { first_name: '', last_name: '', balance: '', id: '' }
 		}
 	}
@@ -16,10 +17,11 @@ export default class TagOnPage extends Component {
 		if (localStorage.getItem('token')) {
 			API.get('/profile/')
 				.then(res => {
-					this.setState({ isFetching: true })
-					this.setState({ user: res.data })
+					this.setState({
+						user: res.data,
+						isFetching: false
+					})
 				})
-				.then(this.setState({ isFetching: false }))
 				.catch(err => {
 					console.log(err)
 				})
@@ -49,7 +51,7 @@ export default class TagOnPage extends Component {
 												<center>
 													<QRCode
 														value={
-															!this.state.isFetching
+															this.state.isFetching
 																? 'Loading....'
 																: this.state.user.first_name +
 																  ',' +
@@ -68,7 +70,7 @@ export default class TagOnPage extends Component {
 								<Card
 									body={
 										<center>
-											{!this.state.isFetching
+											{this.state.isFetching
 												? 'Loading....'
 												: 'QR Code Generated'}
 										</center>

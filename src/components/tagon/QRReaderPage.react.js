@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
-import { Page, Grid, Card, Button, Alert } from 'tabler-react'
+import { Page, Grid, Card, Table, Icon, Button, Alert } from 'tabler-react'
 import SiteWrapper from '../../SiteWrapper.react'
 import QrReader from 'react-qr-reader'
 
@@ -10,138 +10,216 @@ export default class QRReaderPage extends Component {
 		this.state = {
 			tagonmessage: '',
 			delay: 500,
-			passenger: '',
+			passenger: {},
 			bus: []
 		}
 
 		this.handleScan = this.handleScan.bind(this)
 	}
 
+	//! IF USER PRESENTED AN OLD QR CODE WITH MORE FUNDS THAN CURRENT, TAG-ON WORKS!
 	boardBus() {
-		console.log(this.state.bus)
 		if (this.state.bus.length > 0) {
-			this.setState({ tagonmessage: 'Bus Trip Started!!' })
-			for (var person of this.state.bus) {
-				var singleUser = person.split(',')
-				var boardUser = {
-					user_id: singleUser[3],
-					trip_id: 1,
+			this.setState({ tagonmessage: 'Bus Trip Started! - Passengers Charged.' })
+
+			for (var passenger of this.state.bus) {
+				var boardingInfo = {
+					user_id: passenger.userId,
+					trip_id: 1, //TODO: Make Dynamic, Not Hardcoded.
 					timestamp: new Date()
 				}
-				API.post('/boarding', boardUser).then(result => {
-					console.log(result)
-				})
+				API.post('/boarding', boardingInfo).then(res => console.log(res))
 			}
 		} else {
-			this.setState({ tagonmessage: 'Tag on people before first!' })
+			this.setState({ tagonmessage: 'Bus Left Empty!' })
 		}
 	}
 
-	addPassengerToBus = () => {
-		if (!this.state.passenger) {
+	addPassengerToBus = passenger => {
+		if (!passenger) {
 			this.setState({ tagonmessage: 'Scan QR Code First!' })
 		} else {
-			var singleUser = this.state.passenger.split(',')
-			if (singleUser.length == 4) {
-				if (singleUser[2] < 6.0) {
-					this.setState({ tagonmessage: 'Balance Low, Passenger not added!' })
-				} else {
-					this.state.tagonmessage =
-						singleUser[0] + '  ' + singleUser[1] + ' tagged on successfully'
-					this.setState(state => {
-						const bus = state.bus.concat(state.passenger)
-
-						return {
-							bus,
-							passenger: ''
-						}
-					})
-				}
+			// TODO: Make Dynamic (this fare), Not Hardcoded.
+			if (passenger.balance < 6.0) {
+				this.setState({ tagonmessage: 'Balance Low, Passenger not added!' })
 			} else {
-				this.setState({ tagonmessage: 'Invalid QR Code Scanned' })
+				this.setState({
+					tagonmessage: `${passenger.first_name} ${
+						passenger.last_name
+					} tagged on successfully.`,
+					bus: [...this.state.bus, passenger],
+					passenger: {}
+				})
 			}
 		}
+	}
+
+	isAlreadyOnBus = user => {
+		return this.state.bus.some(passenger => user.userId === passenger.userId)
 	}
 
 	handleScan(data) {
 		if (data !== null) {
-			this.setState({
-				passenger: data
-			})
+			var scanData = data.split(',')
+			if (scanData.length === 4) {
+				let passenger = {
+					first_name: scanData[0],
+					last_name: scanData[1],
+					balance: scanData[2],
+					userId: scanData[3]
+				}
+				console.log(passenger)
+				this.setState({ passenger })
+			}
 		}
 	}
-	handleError(err) {
-		console.error(err)
+
+	removePeople(e) {
+		let filteredArray = this.state.bus.filter(item => item.userId !== e.userId)
+		this.setState({ bus: filteredArray })
 	}
+
 	render() {
 		const previewStyle = {
 			height: 200,
 			width: 200
 		}
 
+		const tagonAlert = () => {
+			return (
+				<Alert type="info" icon="info">
+					{this.state.tagonmessage || 'You may now scan passengers.'}
+				</Alert>
+			)
+		}
+
 		return (
 			<SiteWrapper>
 				<Page.Content>
 					<Grid.Row>
-						<Grid.Col width={20}>
-							<Grid.Col md={10} lg={6}>
-								<Grid.Row cards deck>
-									<Grid.Col md={20}>
-										<Card
-											body={
-												<center>
-													<QrReader
-														delay={this.state.delay}
-														style={previewStyle}
-														onError={this.handleError}
-														onScan={this.handleScan}
-													/>
-												</center>
-											}
+						<Grid.Col>
+							<Card
+								body={
+									<center>
+										<QrReader
+											delay={this.state.delay}
+											style={previewStyle}
+											onError={this.handleError}
+											onScan={this.handleScan}
 										/>
-									</Grid.Col>
-								</Grid.Row>
-								<Button.List>
-									<Alert type="info">{this.state.tagonmessage}</Alert>
-									<Button
-										block
-										color="yellow"
-										onClick={() => {
-											{
-												if (!this.state.bus.includes(this.state.passenger)) {
-													this.addPassengerToBus()
-												}
+									</center>
+								}
+							/>
+							<Button.List>
+								{tagonAlert()}
+								<Button
+									block
+									color="yellow"
+									onClick={() => {
+										{
+											let passenger = this.state.passenger
+
+											// Is the passenger already on this bus?
+											if (this.isAlreadyOnBus(passenger)) {
+												this.setState({
+													tagonmessage: 'This passenger has already tagged on.'
+												})
+											} else {
+												this.addPassengerToBus(passenger)
 											}
-										}}
-									>
-										{!this.state.passenger
-											? 'Scan a passenger to add to bus'
-											: 'Add ' +
-											  this.state.passenger.split(',')[0] +
-											  ' ' +
-											  this.state.passenger.split(',')[1] +
-											  ' to the Bus!'}
-									</Button>
-									<Button
-										block
-										color="green"
-										onClick={() => {
-											this.boardBus()
-										}}
-									>
-										{'Click here when ready to leave!'}
-									</Button>
-									<Button
-										block
-										color="blue"
-										onClick={() => {
-											this.props.history.push('/')
-										}}
-									>
-										Back to Home
-									</Button>
-								</Button.List>
-							</Grid.Col>
+										}
+									}}
+									disabled={
+										!Object.keys(this.state.passenger).length ||
+										this.isAlreadyOnBus(this.state.passenger)
+									}
+								>
+									{!Object.keys(this.state.passenger).length
+										? 'Scan Passengers Now'
+										: this.isAlreadyOnBus(this.state.passenger)
+										? 'Already Tagged On'
+										: 'Add ' +
+										  this.state.passenger.first_name +
+										  ' ' +
+										  this.state.passenger.last_name +
+										  ' to this Bus!'}
+								</Button>
+								<Button
+									block
+									color="green"
+									onClick={() => {
+										this.boardBus()
+									}}
+								>
+									{'Start This Trip Now'}
+								</Button>
+								<Button
+									block
+									color="blue"
+									onClick={() => {
+										this.props.history.push('/')
+									}}
+								>
+									Back to Home
+								</Button>
+							</Button.List>
+						</Grid.Col>
+						<Grid.Col>
+							<Card>
+								<Card.Status color="blue" />
+								<Card.Header>
+									<Card.Title>My Passengers</Card.Title>
+								</Card.Header>
+								<Card.Body>
+									<Table responsive>
+										<Table.ColHeader>#</Table.ColHeader>
+										<Table.ColHeader>Passenger Name</Table.ColHeader>
+										<Table.ColHeader>Remove</Table.ColHeader>
+										<Table.Body>
+											{this.state.bus.map(passenger => {
+												return (
+													<Table.Row key={passenger.id}>
+														<Table.Col>
+															{this.state.bus.indexOf(passenger) + 1}
+														</Table.Col>
+														<Table.Col>
+															<b>
+																{passenger.first_name +
+																	' ' +
+																	passenger.last_name}
+															</b>
+														</Table.Col>
+														<Table.Col>
+															<Button
+																color="red"
+																onClick={() => {
+																	if (
+																		window.confirm(
+																			`I confirm that ${passenger.first_name} ${
+																				passenger.last_name
+																			} is no longer on this bus and that I am not giving them a free ride.`
+																		)
+																	) {
+																		this.removePeople(passenger)
+																	}
+																}}
+															>
+																<Icon prefix="fe" name="trash-2" />
+															</Button>
+														</Table.Col>
+													</Table.Row>
+												)
+											})}
+										</Table.Body>
+									</Table>
+								</Card.Body>
+								{!this.state.isFetching && (
+									<Card.Footer>
+										<Icon prefix="fe" name="info" /> Passengers will be charged
+										when this trip starts.
+									</Card.Footer>
+								)}
+							</Card>
 						</Grid.Col>
 					</Grid.Row>
 				</Page.Content>

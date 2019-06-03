@@ -1,6 +1,15 @@
-# AUT Shuttle App's Front-end
+![Logo](/screenshots/aut-shuttle-app.png)
 
-This repository holds frontend-related code.
+# AUT Shuttle App's Front-End
+
+## The Solution for a 21st Century University
+Our App | Problem and Solution
+:-------------------------:|:-------------------------:
+![App Mockup](/screenshots/mock-up.png)  |  ![Problem and Solution](/screenshots/problem-solution.png)
+
+## Boarding Passengers
+![Passenger Boarding](/screenshots/passenger-boarding.png)
+
 
 ## Getting Started
 
@@ -8,7 +17,7 @@ This repository holds frontend-related code.
 
 To ensure you have the required dependencies installed, run:
 
-```
+```javascript
 npm install
 ```
 
@@ -18,7 +27,7 @@ Be sure to create a `.env` file in the root directory with the configuration out
 
 To start (run) the application, run:
 
-```
+```javascript
 npm start
 ```
-When running, changes to the code will automatically render in the browser.
+When running, changes to the code will automatically render in the browser. You will also need to start the [API Server](https://github.com/aut-shuttle/api) to interact with the application's back-end.
