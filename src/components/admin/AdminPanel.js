@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Page, Grid, Card, Button, Alert, colors } from 'tabler-react'
 import SiteWrapper from '../../SiteWrapper.react'
-import QrReader from 'react-qr-reader'
 import * as V from 'victory';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip,
 VictoryPie, VictoryArea, VictoryClipContainer, VictoryLabel, VictoryScatter,
@@ -79,16 +78,11 @@ const data = [
  
   
 
-export default class QRReaderPage extends Component {
+export default class AdminPanel extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			tagonmessage: '',
-			delay: 500,
-			passenger: '',
-            bus: [],
-     user: { first_name: '', balance: ''},
-      
+     user: { first_name: '', balance: ''},  
 		}
     }
 
