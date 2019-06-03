@@ -99,7 +99,7 @@ export default class TopUpPage extends Component {
 										env={'sandbox'}
 										client={client}
 										currency={'NZD'}
-										total={5}
+										total={50}
 										onError={onError}
 										onSuccess={onSuccess}
 										onCancel={onCancel}
