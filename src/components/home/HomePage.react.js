@@ -34,11 +34,6 @@ export default class LoginPage extends Component {
 		console.log(error, info)
 	}
 
-	toggle = () =>{
-		this.setState({
-			showMe:true
-		})
-	}
 
 	render() {
 		const emailUnverifiedAlert = () => {
