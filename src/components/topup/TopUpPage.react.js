@@ -74,7 +74,7 @@ export default class TopUpPage extends Component {
 		var balance = Number(this.state.user.balance)
 		var topup = Number(this.state.selectedTopupAmount)
 		if (balance + topup > 200) {
-			payPalButton = null
+			payPalButton = <Button block color = "red">$200 maximum account balance reached</Button>
 		} else {
 			payPalButton = (
 				<PaypalExpressBtn
