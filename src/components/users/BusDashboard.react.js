@@ -32,6 +32,7 @@ export default class BusDashboard extends Component {
 		console.log(error, info)
 	}
 
+	
 	render() {
 		return (
 			<SiteWrapper>
