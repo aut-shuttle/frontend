@@ -90,6 +90,7 @@ export default class TopUpPage extends Component {
 										</center>
 									</h1>
 								}
+								footer="Click PayPal Checkout Button to Top Up"
 							/>
 
 							<Button.List>
