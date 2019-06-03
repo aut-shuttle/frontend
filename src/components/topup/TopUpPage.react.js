@@ -48,7 +48,7 @@ export default class TopUpPage extends Component {
 
 			const topup = {
 				transaction_id: payment.paymentID,
-				amount: 25 // TODO: Link amount to dropdown
+				amount: 20 // TODO: Link amount to dropdown
 			}
 
 			API.post('/payments', topup)
@@ -99,7 +99,7 @@ export default class TopUpPage extends Component {
 										env={'sandbox'}
 										client={client}
 										currency={'NZD'}
-										total={25}
+										total={20}
 										onError={onError}
 										onSuccess={onSuccess}
 										onCancel={onCancel}
