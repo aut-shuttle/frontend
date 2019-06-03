@@ -42,24 +42,24 @@ export default class TopUpPage extends Component {
 		this.setState({ selectedTopupAmount: amount })
 	}
 
-	render() {
-		const onSuccess = payment => {
-			console.log('Successful payment!', payment)
+	topUp = payment => {
+		console.log('Successful payment!', payment)
 
-			const topup = {
-				transaction_id: payment.paymentID,
-				amount: 20 // TODO: Link amount to dropdown
-			}
-
-			API.post('/payments', topup)
-				.then(res => {
-					this.props.history.push('/')
-				})
-				.catch(error => {
-					console.log(error)
-				})
+		const topup = {
+			transaction_id: payment.paymentID,
+			amount: this.state.selectedTopupAmount
 		}
 
+		API.post('/payments', topup)
+			.then(res => {
+				this.props.history.push('/')
+			})
+			.catch(error => {
+				console.log(error)
+			})
+	}
+
+	render() {
 		const onError = error =>
 			console.log('Erroneous payment OR failed to load script!', error)
 
@@ -70,6 +70,40 @@ export default class TopUpPage extends Component {
 				'AYCKfuONytEMj8apXJCgd-rGgBHBZdrak8wQ_ACZ3XFfbIYzEY0lAQ67a11crVQozXS3XL2PY3SdLW0k',
 			production: '___'
 		}
+		let payPalButton
+		var balance = Number(this.state.user.balance)
+		var topup = Number(this.state.selectedTopupAmount)
+		if (balance + topup > 200) {
+			payPalButton = null
+		} else {
+			payPalButton = (
+				<PaypalExpressBtn
+					env={'sandbox'}
+					client={client}
+					currency={'NZD'}
+					total={this.state.selectedTopupAmount}
+					onError={onError}
+					onSuccess={payment => {
+						this.topUp(payment)
+					}}
+					onCancel={onCancel}
+				/>
+			)
+		}
+
+		var validValues = ['5', '10', '20', '50', '80']
+		var dropDownValues = []
+
+		for (var i = 0; i < validValues.length; i++) {
+			var currentNumber = validValues[i]
+			dropDownValues.push(
+				<Dropdown.Item
+					value={currentNumber}
+					onClick={this.handleTopupAmountChange.bind(this, currentNumber)}
+				/>
+			)
+		}
+
 		return (
 			<SiteWrapper>
 				<Page.Content>
@@ -90,21 +124,29 @@ export default class TopUpPage extends Component {
 										</center>
 									</h1>
 								}
-								footer="Click PayPal Checkout Button to Top Up"
+								footer={
+									<center>
+										Select amount from TopUp then click PayPal Button
+									</center>
+								}
 							/>
 
 							<Button.List>
-								<center>
-									<PaypalExpressBtn
-										env={'sandbox'}
-										client={client}
-										currency={'NZD'}
-										total={20}
-										onError={onError}
-										onSuccess={onSuccess}
-										onCancel={onCancel}
-									/>
-								</center>
+								<center>{payPalButton}</center>
+
+								<Button.Dropdown
+									block
+									value={'TOP UP $' + this.state.selectedTopupAmount}
+									icon="dollar-sign"
+									color="green"
+									data-toggle="dropdown"
+									aria-haspopup="true"
+									aria-expanded="false"
+									toggle="true"
+								>
+									{dropDownValues}
+								</Button.Dropdown>
+
 								<Button
 									block
 									color="yellow"
