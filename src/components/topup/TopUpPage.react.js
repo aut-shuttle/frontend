@@ -33,11 +33,6 @@ export default class TopUpPage extends Component {
 			.then(this.setState({ isFetching: false }))
 	}
 
-	handleChange = async () => {
-		const state = this.state
-		this.setState(state)
-	}
-
 	handleTopupAmountChange = amount => {
 		this.setState({ selectedTopupAmount: amount })
 	}
