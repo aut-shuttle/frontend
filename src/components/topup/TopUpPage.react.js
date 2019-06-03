@@ -95,23 +95,6 @@ export default class TopUpPage extends Component {
 							/>
 
 							<Button.List>
-								<Button.Dropdown
-									block
-									value={'TOP UP ' + this.state.selectedTopupAmount}
-									icon="dollar-sign"
-									color="green"
-								>
-									{validTopupAmounts.map((amount, key) => {
-										let newBalance = parseFloat(
-											parseFloat(this.state.user.balance) + parseFloat(amount)
-										)
-										if (newBalance <= 200) {
-											return (
-												<Dropdown.Item key={amount}>${amount}</Dropdown.Item>
-											)
-										}
-									})}
-								</Button.Dropdown>
 								<center>
 									<PaypalExpressBtn
 										env={'sandbox'}
@@ -123,14 +106,6 @@ export default class TopUpPage extends Component {
 										onCancel={onCancel}
 									/>
 								</center>
-								<Button block color="blue" icon="plus-circle">
-									{' '}
-									Automatic Payment{' '}
-								</Button>
-								<Button block color="blue" icon="settings">
-									{' '}
-									Payment Settings
-								</Button>
 								<Button
 									block
 									color="yellow"
