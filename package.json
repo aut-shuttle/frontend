@@ -36,7 +36,8 @@
     "react-scripts": "2.1.8",
     "react-simple-maps": "^0.12.1",
     "react-table": "^6.10.0",
-    "tabler-react": "^1.29.0"
+    "tabler-react": "^1.29.0",
+    "victory": "^32.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
