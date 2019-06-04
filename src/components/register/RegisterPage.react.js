@@ -43,7 +43,7 @@ export default class LoginPage extends Component {
 	}
 
 	handleSubmit = (values, { props = this.props, setSubmitting }) => {
-		setSubmitting(false)
+		setSubmitting(true)
 
 		const registerUser = {
 			email_address: values.email,
@@ -62,12 +62,20 @@ export default class LoginPage extends Component {
 				window.location.reload()
 			})
 			.catch(error => {
-				if (error.response.status === 409) {
+				setSubmitting(false)
+				if (!error.response) {
 					this.setState({
-						message: 'Register Failed'
+						message: 'API is down, please start the API'
 					})
-				}
-				if (error.response.status === 404) {
+				} else if (error.response.status === 409) {
+					this.setState({
+						message: 'Register failed'
+					})
+				} else if (error.response.status === 422) {
+					this.setState({
+						message: 'Email already exists'
+					})
+				} else if (error.response.status === 404) {
 					this.setState({
 						message: 'Failed'
 					})
