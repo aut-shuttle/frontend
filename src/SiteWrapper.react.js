@@ -108,6 +108,12 @@ class SiteWrapper extends Component {
 					icon: 'maximize',
 					LinkComponent: withRouter(NavLink)
 				})
+				navBarItems.push({
+					value: 'Driver Dashboard',
+					to: '/driverdashboard',
+					icon: 'home',
+					LinkComponent: withRouter(NavLink)
+				})
 				return 'Shuttle Driver'
 			} else if (this.state.user.role.id === 3) {
 				return 'Shuttle Passenger'
