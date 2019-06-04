@@ -5,6 +5,7 @@ import {
 	Grid,
 	Button,
 	Card,
+	Alert,
 	Dropdown,
 	Form as TablerForm,
 	Page
@@ -15,7 +16,7 @@ export default class TopUpPage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			isFetching: false,
+			isFetching: true,
 			message: '',
 			user: {
 				balance: ''
@@ -27,10 +28,12 @@ export default class TopUpPage extends Component {
 	componentDidMount() {
 		API.get('/profile/')
 			.then(res => {
-				this.setState({ isFetching: true })
-				this.setState({ user: res.data })
+				this.setState({
+					user: res.data,
+					isFetching: false
+				})
 			})
-			.then(this.setState({ isFetching: false }))
+			.catch(error => console.log(error))
 	}
 
 	handleTopupAmountChange = amount => {
@@ -69,7 +72,11 @@ export default class TopUpPage extends Component {
 		var balance = Number(this.state.user.balance)
 		var topup = Number(this.state.selectedTopupAmount)
 		if (balance + topup > 200) {
-			payPalButton = <Button block color = "red">$200 maximum account balance reached</Button>
+			payPalButton = (
+				<Alert type="info" icon="info">
+					Your balance cannot exceed $200
+				</Alert>
+			)
 		} else {
 			payPalButton = (
 				<PaypalExpressBtn
@@ -113,8 +120,8 @@ export default class TopUpPage extends Component {
 								body={
 									<h1>
 										<center>
-											{!this.state.isFetching
-												? 'Loading....'
+											{this.state.isFetching
+												? 'Loading...'
 												: '$' + this.state.user.balance}
 										</center>
 									</h1>
