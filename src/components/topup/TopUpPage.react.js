@@ -25,6 +25,7 @@ export default class TopUpPage extends Component {
 		}
 	}
 
+	// Fetch User's Balance
 	componentDidMount() {
 		API.get('/profile/')
 			.then(res => {
@@ -36,16 +37,18 @@ export default class TopUpPage extends Component {
 			.catch(error => console.log(error))
 	}
 
+	// Update State when Selected Amount Changes
 	handleTopupAmountChange = amount => {
 		this.setState({ selectedTopupAmount: amount })
 	}
 
-	topUp = payment => {
-		console.log('Successful payment!', payment)
+	// Write Topped-up Balance to Database
+	topUp = (payment, amount) => {
+		console.log(`Successfully paid $${amount}.`)
 
 		const topup = {
 			transaction_id: payment.paymentID,
-			amount: this.state.selectedTopupAmount
+			amount
 		}
 
 		API.post('/payments', topup)
@@ -58,52 +61,87 @@ export default class TopUpPage extends Component {
 	}
 
 	render() {
+		var validTopupAmounts = ['5', '10', '20', '50', '80']
+
+		// PayPal Error
 		const onError = error =>
 			console.log('Erroneous payment OR failed to load script!', error)
 
+		// PayPal Cancel
 		const onCancel = data => console.log('Cancelled payment!', data)
 
-		const client = {
-			sandbox:
-				'AYCKfuONytEMj8apXJCgd-rGgBHBZdrak8wQ_ACZ3XFfbIYzEY0lAQ67a11crVQozXS3XL2PY3SdLW0k',
-			production: '___'
-		}
-		let payPalButton
-		var balance = Number(this.state.user.balance)
-		var topup = Number(this.state.selectedTopupAmount)
-		if (balance + topup > 200) {
-			payPalButton = (
-				<Alert type="info" icon="info">
-					Your balance cannot exceed $200
-				</Alert>
-			)
-		} else {
-			payPalButton = (
-				<PaypalExpressBtn
-					env={'sandbox'}
-					client={client}
-					currency={'NZD'}
-					total={this.state.selectedTopupAmount}
-					onError={onError}
-					onSuccess={payment => {
-						this.topUp(payment)
-					}}
-					onCancel={onCancel}
-				/>
-			)
+		const renderPayPalButton = (balance, topup) => {
+			let newBalance = parseFloat(parseFloat(balance) + parseFloat(topup))
+			if (newBalance > 200) {
+				return (
+					<Alert type="info" icon="info">
+						Your balance cannot exceed $200.
+					</Alert>
+				)
+			} else {
+				// PayPal Client
+				const client = {
+					sandbox:
+						'AYCKfuONytEMj8apXJCgd-rGgBHBZdrak8wQ_ACZ3XFfbIYzEY0lAQ67a11crVQozXS3XL2PY3SdLW0k',
+					production: '___'
+				}
+				return (
+					<PaypalExpressBtn
+						env={'sandbox'}
+						client={client}
+						currency={'NZD'}
+						total={topup}
+						onError={onError}
+						onSuccess={payment => {
+							this.topUp(payment, topup)
+						}}
+						onCancel={onCancel}
+					/>
+				)
+			}
 		}
 
-		var validValues = ['5', '10', '20', '50', '80']
-		var dropDownValues = []
-
-		for (var i = 0; i < validValues.length; i++) {
-			var currentNumber = validValues[i]
-			dropDownValues.push(
-				<Dropdown.Item
-					value={currentNumber}
-					onClick={this.handleTopupAmountChange.bind(this, currentNumber)}
-				/>
-			)
+		const renderTopupSelector = () => {
+			if (
+				this.state.isFetching ||
+				parseFloat(validTopupAmounts[0]) + parseFloat(this.state.user.balance) >
+					200
+			) {
+				return (
+					<Alert type="info" icon="info">
+						Your balance cannot exceed $200.
+					</Alert>
+				)
+			} else {
+				return (
+					<Button.Dropdown
+						block
+						value={'TOP UP $' + this.state.selectedTopupAmount}
+						icon="dollar-sign"
+						color="green"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+						toggle="true"
+					>
+						{validTopupAmounts.map((topup, key) => {
+							let newBalance = parseFloat(
+								parseFloat(this.state.user.balance) + parseFloat(topup)
+							)
+							if (newBalance <= 200) {
+								return (
+									<Dropdown.Item
+										key={key}
+										onClick={this.handleTopupAmountChange.bind(this, topup)}
+									>
+										${topup}
+									</Dropdown.Item>
+								)
+							}
+						})}
+					</Button.Dropdown>
+				)
+			}
 		}
 
 		return (
@@ -127,28 +165,23 @@ export default class TopUpPage extends Component {
 									</h1>
 								}
 								footer={
-									<center>
-										Select amount from TopUp then click PayPal Button
-									</center>
+									<center>Select your amount and proceed to PayPal.</center>
 								}
 							/>
 
 							<Button.List>
-								<center>{payPalButton}</center>
+								<center>
+									{this.state.selectedTopupAmount &&
+										renderPayPalButton(
+											this.state.user.balance,
+											this.state.selectedTopupAmount
+										)}
+								</center>
 
-								<Button.Dropdown
-									block
-									value={'TOP UP $' + this.state.selectedTopupAmount}
-									icon="dollar-sign"
-									color="green"
-									data-toggle="dropdown"
-									aria-haspopup="true"
-									aria-expanded="false"
-									toggle="true"
-								>
-									{dropDownValues}
-								</Button.Dropdown>
+								{/* Top Up Amount Selector */}
+								{renderTopupSelector()}
 
+								{/* Back to Home Button */}
 								<Button
 									block
 									color="yellow"
