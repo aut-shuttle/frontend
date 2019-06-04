@@ -94,6 +94,12 @@ class SiteWrapper extends Component {
 	render() {
 		const getUserDescription = () => {
 			if (this.state.user.role.id === 1) {
+				navBarItems.push({
+					value: 'Admin Panel',
+					to: '/admin',
+					icon: 'home',
+					LinkComponent: withRouter(NavLink)
+				})
 				return 'Shuttle Admin'
 			} else if (this.state.user.role.id === 2) {
 				navBarItems.push({

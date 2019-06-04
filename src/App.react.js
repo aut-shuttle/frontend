@@ -15,6 +15,7 @@ import BusSchedulePage from './components/busschedule/BusSchedulePage.react'
 import ConfirmEmail from './components/register/ConfirmEmail.react'
 import QRReaderPage from './components/tagon/QRReaderPage.react'
 import DriverDashboard from './components/driver/DriverDashboardPage.react'
+import AdminPanel from './components/admin/AdminPanel'
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 					<Route path="/verify/:id" component={ConfirmEmail} />
 					<Route exact path="/qrreader" component={QRReaderPage} />
 					<Route exact path="/driverdashboard" component={DriverDashboard} />
+					<Route exact path="/admin" component={AdminPanel} />
 				</Switch>
 			</Router>
 		</React.StrictMode>
