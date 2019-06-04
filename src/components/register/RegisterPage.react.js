@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import { Formik, Form } from 'formik'
 import API from '../../utils/API'
-import {
-	Page,
-	Grid,
-	Alert,
-	Form as TablerForm,
-	Button
-} from 'tabler-react'
+import { Page, Grid, Alert, Form as TablerForm, Button } from 'tabler-react'
 
 export default class LoginPage extends Component {
 	constructor(props) {
@@ -27,14 +21,24 @@ export default class LoginPage extends Component {
 		if (!values.email) errors.email = 'Required'
 		if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
 			errors.email = 'You must supply a valid email address'
-		} else if (
+		}
+		if (
 			values.email
 				.split('@')
 				.slice(1)
-				.indexOf('autuni.ac.nz') === -1
+				.indexOf('autuni.ac.nz') === -1 &&
+			values.email
+				.split('@')
+				.slice(1)
+				.indexOf('aut.ac.nz') === -1
 		) {
 			errors.email = 'Not a valid AUT Email Address'
 		}
+
+		if (values.password != values.verifypassword) {
+			errors.password = 'Passwords entered must match'
+		}
+
 		return errors
 	}
 
@@ -143,24 +147,6 @@ export default class LoginPage extends Component {
 										<div style={{ color: 'red' }}>{props.errors.email}</div>
 									)}
 									<TablerForm.Input
-										name="studentid"
-										type="text"
-										label="Student ID"
-										placeholder="Enter Student ID"
-										value={props.values.studentid}
-										onChange={props.handleChange}
-										onBlur={props.handleBlur}
-										style={{
-											borderColor:
-												props.errors.studentid &&
-												props.touched.studentid &&
-												'red'
-										}}
-									/>
-									{props.errors.studentid && props.touched.studentid && (
-										<div style={{ color: 'red' }}>{props.errors.studentid}</div>
-									)}
-									<TablerForm.Input
 										name="password"
 										type="password"
 										label="Password"
@@ -176,6 +162,27 @@ export default class LoginPage extends Component {
 									{props.errors.password && props.touched.password && (
 										<div style={{ color: 'red' }}>{props.errors.password}</div>
 									)}
+									<TablerForm.Input
+										name="verifypassword"
+										type="password"
+										label="Verify Password"
+										placeholder="Verify Password"
+										value={props.values.verifypassword}
+										onChange={props.handleChange}
+										onBlur={props.handleBlur}
+										style={{
+											borderColor:
+												props.errors.verifypassword &&
+												props.touched.verifypassword &&
+												'red'
+										}}
+									/>
+									{props.errors.verifypassword &&
+										props.touched.verifypassword && (
+											<div style={{ color: 'red' }}>
+												{props.errors.verifypassword}
+											</div>
+										)}
 									&nbsp;
 									<Button
 										block

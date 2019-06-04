@@ -17,6 +17,7 @@ const navBarItems = [
 		to: '/topup',
 		LinkComponent: withRouter(NavLink)
 	},
+
 	{
 		value: 'Profile',
 		icon: 'user',
@@ -37,6 +38,12 @@ const navBarItems = [
 				LinkComponent: withRouter(NavLink)
 			}
 		]
+	},
+	{
+		value: 'Bus Schedule',
+		icon: 'align-justify',
+		to: '/busschedule',
+		LinkComponent: withRouter(NavLink)
 	},
 	{
 		value: 'Login',
@@ -87,8 +94,20 @@ class SiteWrapper extends Component {
 	render() {
 		const getUserDescription = () => {
 			if (this.state.user.role.id === 1) {
+				navBarItems.push({
+					value: 'Admin Panel',
+					to: '/admin',
+					icon: 'home',
+					LinkComponent: withRouter(NavLink)
+				})
 				return 'Shuttle Admin'
 			} else if (this.state.user.role.id === 2) {
+				navBarItems.push({
+					value: 'Scanner',
+					to: '/QRReader',
+					icon: 'maximize',
+					LinkComponent: withRouter(NavLink)
+				})
 				return 'Shuttle Driver'
 			} else if (this.state.user.role.id === 3) {
 				return 'Shuttle Passenger'
@@ -97,13 +116,13 @@ class SiteWrapper extends Component {
 
 		if (localStorage.getItem('token') !== '') {
 			{
-				navBarItems[3] = {
+				navBarItems[4] = {
 					icon: 'log-out',
 					value: 'Sign out',
 					to: '/logout',
 					LinkComponent: withRouter(NavLink)
 				}
-				navBarItems.length = 4
+				navBarItems.length = 5
 				accountDropdownProps.name =
 					this.state.user.first_name + ' ' + this.state.user.last_name
 				accountDropdownProps.description = getUserDescription()

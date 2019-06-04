@@ -48,8 +48,8 @@ export default class ChangePasswordPage extends Component {
 	render() {
 		const { message } = this.state
 		return (
-			<Page.Content>
-				<SiteWrapper>
+			<SiteWrapper>
+				<Page.Content>
 					<Formik onSubmit={this.handleSubmit}>
 						{props => (
 							<Form>
@@ -116,8 +116,8 @@ export default class ChangePasswordPage extends Component {
 							</Form>
 						)}
 					</Formik>
-				</SiteWrapper>
-			</Page.Content>
+				</Page.Content>
+			</SiteWrapper>
 		)
 	}
 }
