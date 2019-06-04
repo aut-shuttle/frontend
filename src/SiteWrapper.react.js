@@ -105,7 +105,7 @@ class SiteWrapper extends Component {
 				navBarItems.push({
 					value: 'Driver Dashboard',
 					to: '/driverdashboard',
-					icon: 'maximize',
+					icon: 'home',
 					LinkComponent: withRouter(NavLink)
 				})
 				return 'Shuttle Driver'
