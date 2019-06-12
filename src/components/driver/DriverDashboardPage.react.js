@@ -9,6 +9,7 @@ export default class DriverDashboard extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			isFetching: true,
 			user: { first_name: '', last_name: '' }
 		}
 	}
@@ -17,9 +18,10 @@ export default class DriverDashboard extends Component {
 		if (localStorage.getItem('token')) {
 			API.get('/profile/')
 				.then(res => {
-					this.setState({ isFetching: true })
-					this.setState({ user: res.data })
-					this.setState({ isFetching: false })
+					this.setState({
+						user: res.data,
+						isFetching: false
+					})
 				})
 				.catch(err => {
 					console.log(err)
@@ -35,17 +37,13 @@ export default class DriverDashboard extends Component {
 	render() {
 		return (
 			<SiteWrapper>
-				<Page.Content
-					title={
-						this.state.isFetching ? 'Loading' : <h1>Driver's Dashboard</h1>
-					}
-				>
+				<Page.Content title={<h1>Driver's Dashboard</h1>}>
 					<Grid.Col md={12}>
 						<Grid.Row cards deck>
 							<Grid.Col md={6}>
 								<Card statusColor="blue">
 									<Card.Header>
-										<h4> Your Journeys... </h4>
+										<h4>Your Journeys...</h4>
 									</Card.Header>
 									<List.Group>
 										<List.GroupItem action>
@@ -63,7 +61,7 @@ export default class DriverDashboard extends Component {
 											triggerContent="Start Trip"
 											itemsObject={[
 												{
-													value: 'Scan Passengers ',
+													value: 'Scan Passengers',
 													icon: 'maximize'
 												},
 												{

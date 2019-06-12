@@ -18,8 +18,10 @@ export default class LoginPage extends Component {
 		if (localStorage.getItem('token')) {
 			API.get('/profile/')
 				.then(res => {
-					this.setState({ user: res.data })
-					this.setState({ isFetching: false })
+					this.setState({
+						user: res.data,
+						isFetching: false
+					})
 				})
 				.catch(err => {
 					console.log(err)

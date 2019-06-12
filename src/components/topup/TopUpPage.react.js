@@ -91,6 +91,7 @@ export default class TopUpPage extends Component {
 						client={client}
 						currency={'NZD'}
 						total={topup}
+						shipping={1}
 						onError={onError}
 						onSuccess={payment => {
 							this.topUp(payment, topup)

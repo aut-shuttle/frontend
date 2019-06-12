@@ -10,7 +10,7 @@ export default class EditProfilePage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			isFetching: false,
+			isFetching: true,
 			message: '',
 			user: ''
 		}
@@ -18,9 +18,10 @@ export default class EditProfilePage extends Component {
 
 	componentDidMount() {
 		API.get('/profile/').then(res => {
-			this.setState({ isFetching: true })
-			this.setState({ user: res.data })
-			this.setState({ isFetching: false })
+			this.setState({
+				user: res.data,
+				isFetching: false
+			})
 		})
 	}
 

@@ -90,6 +90,7 @@ export default class AdminPanel extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			isFetching: true,
 			user: { first_name: '', balance: '' }
 		}
 	}
@@ -98,10 +99,11 @@ export default class AdminPanel extends Component {
 		if (localStorage.getItem('token')) {
 			API.get('/profile/')
 				.then(res => {
-					this.setState({ isFetching: true })
-					this.setState({ user: res.data })
+					this.setState({
+						user: res.data,
+						isFetching: false
+					})
 				})
-				.then(this.setState({ isFetching: false }))
 				.catch(err => {
 					console.log(err)
 				})
