@@ -3,6 +3,13 @@
 # AUT Shuttle App's Front-End
 
 ## The Solution for a 21st Century University
+The AUT Shuttle App is a solution 12 weeks in the making, that will say goodbye to traditional paper tickets on the shuttles connecting our university's 3 campuses.
+
+*Problem:* Currently, there are outdated, manual and tedious processes in purchasing, clipping (by driver upon boarding), and recording paper tickets that are easily forgeable. No data analytics to efficiently schedule busses.
+
+*Solution:* A feature-rich, yet worry-free Progressive Web App (PWA) allowing users to safely top up and redeem their account balance for shuttle trips. Admin and Driver dashboards with advanced capabilities.
+
+
 Our App | Problem and Solution
 :-------------------------:|:-------------------------:
 ![App Mockup](/screenshots/mock-up.png)  |  ![Problem and Solution](/screenshots/problem-solution.png)
