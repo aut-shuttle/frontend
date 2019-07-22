@@ -7,7 +7,17 @@
     "type": "git",
     "url": "git+https://github.com/aut-shuttle/frontend.git"
   },
-  "author": "Thea Miguel, Olaf Wrieden, Chenhui Lyu, Michael Jeffcoat",
+  "author": {
+    "name": "Olaf Wrieden",
+    "email": "olaf@olafwrieden.com",
+    "url": "https://olafwrieden.com"
+  },
+  "contributors": [
+    { "name": "Michael Jeffcoat" },
+    { "name": "Thea Miguel" },
+    { "name": "Hamish Maritz" },
+    { "name": "Chenhui Lyu" }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/aut-shuttle/frontend/issues"
