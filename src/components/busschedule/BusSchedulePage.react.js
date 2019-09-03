@@ -96,8 +96,8 @@ export default class BusSchedulePage extends Component {
 						<Table responsive>
 							<Table.Header>
 								<Table.ColHeader>Name</Table.ColHeader>
-								<Table.ColHeader>From</Table.ColHeader>
-								<Table.ColHeader>To</Table.ColHeader>
+								<Table.ColHeader>Departure</Table.ColHeader>
+								<Table.ColHeader>Arrival</Table.ColHeader>
 								<Table.ColHeader>Fare</Table.ColHeader>
 							</Table.Header>
 							<Table.Body>
@@ -105,10 +105,11 @@ export default class BusSchedulePage extends Component {
 									var departureTime = this.convertTime(
 										trip.stops[0].departure_time
 									)
-									var currentTime = moment(new Date()).format('hh:mm A')
 
-									// FIXME: Comparison based on String, not Date.
-									if (currentTime < departureTime) {
+									var curr_time = moment(new Date(), 'hh:mm A')
+									let dept_time = moment(departureTime, 'hh:mm A')
+
+									if (dept_time.isAfter(curr_time)) {
 										return (
 											<Table.Row
 												key={trip.id}
@@ -116,11 +117,9 @@ export default class BusSchedulePage extends Component {
 											>
 												<Table.Col>{trip.name}</Table.Col>
 												<Table.Col>
-													{trip.stops[0].stop.name} @{' '}
 													{this.convertTime(trip.stops[0].departure_time)}
 												</Table.Col>
 												<Table.Col>
-													{trip.stops[trip.stops.length - 1].stop.name} @{' '}
 													{this.convertTime(trip.stops[0].arrival_time)}
 												</Table.Col>
 												<Table.Col>${trip.fare}</Table.Col>

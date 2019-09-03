@@ -7,7 +7,7 @@ import AppBar from '../components/AppBar'
 import Toolbar, { styles as toolbarStyles } from '../components/Toolbar'
 import Typography from '../components/Typography'
 import Button from '@material-ui/core/Button'
-import BusLogo from './../Images/buslogo'
+import BusLogo from './../Images/shuttle.png'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { red, blue, green, yellow } from '@material-ui/core/colors'
 
@@ -64,7 +64,7 @@ function AppAppBar(props) {
 				<Toolbar className={classes.toolbar}>
 					<div className={classes.left} />
 					<img
-						style={{ display: 'block', width: '5%', height: '100%' }}
+						style={{ display: 'block', height: '100%' }}
 						src={BusLogo}
 						alt=""
 					/>
