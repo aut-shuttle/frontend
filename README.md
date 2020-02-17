@@ -43,3 +43,5 @@ When running, changes to the code will automatically render in the browser. You 
 ## Sprint 2 Presentation
 
 At the end of our second development sprint, we presented our platform. [Check out the video on YouTube](https://youtu.be/LtgKkVBSTFQ).
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/LtgKkVBSTFQ/0.jpg)](https://www.youtube.com/watch?v=LtgKkVBSTFQ)
